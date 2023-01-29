@@ -73,3 +73,8 @@
   function redirect() {
     window.location = './login.html';
   }
+
+  function onClick(event) {
+    event.preventDefault();
+    window.location = './index.html';
+  }
