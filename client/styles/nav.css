@@ -1,0 +1,92 @@
+nav {
+    margin:50px auto 0;
+
+    position:relative;
+    width: 800px;
+    height: 60px;
+    background-color: #34495e;
+    border-radius: 8px;
+    font-size: 0;
+
+}
+
+.logo img{
+    margin-top: -40px;
+    position:absolute;
+    width: 200px;
+    height: 165px;
+    cursor: pointer;
+    left: 210px;
+    z-index:10;
+}
+
+nav a {
+    line-height: 60px;
+    height: 100%;
+    font-size:15px;
+    display:inline-block;
+    position:relative;
+    z-index: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    cursor:pointer;
+}
+nav .animation {
+    position:absolute;
+    height: 100%;
+    top:0;
+    z-index: 0;
+    transition: all .5s ease 0s;
+    border-radius:8px;
+}
+a:nth-child(1) {
+    width: 160px;
+}
+a:nth-child(2) {
+    width: 160px;
+}
+a:nth-child(3) {
+    width: 160px;
+}
+a:nth-child(4) {
+    width: 160px;
+}
+a:nth-child(5) {
+    width: 160px;
+}
+nav .start-home, a:nth-child(1):hover~.animation {
+    width: 160px;
+    left: 0;
+    background-color: #dfa32c;
+}
+nav .start-create_test, a:nth-child(2):hover~.animation {
+    width: 160px;
+    left: 160px;
+    background-color: #dfa32c;
+}
+nav .start-show_students, a:nth-child(3):hover~.animation {
+    width: 160px;
+    left: 320px;
+    background-color: #dfa32c;
+}
+nav .start-my_profile, a:nth-child(4):hover~.animation {
+    width: 160px;
+    left: 480px;
+    background-color: #dfa32c;
+}
+nav .start-logout, a:nth-child(5):hover~.animation {
+    width: 160px;
+    left: 640px;
+    background-color: #dfa32c;
+}
+
+body {
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+span {
+    color: #222fdd;
+}
