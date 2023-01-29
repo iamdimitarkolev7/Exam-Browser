@@ -1,6 +1,6 @@
 <?php
-    require_once 'mark.php';
-    require_once 'testInputUtility.php';
+    require_once '../models/mark.php';
+    require_once '../utils/testInputUtility.php';
 
     header('Content-Type: application/json');
 

@@ -1,5 +1,5 @@
 <?php
-  require_once "db.php";
+  require_once "../db/db.php";
 
   /**
    * Use this class to manage user session tokens

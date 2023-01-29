@@ -1,7 +1,7 @@
 <?php
-    require_once 'user.php';
-    require_once 'testInputUtility.php';
-    require_once 'tokenUtility.php';
+    require_once '../models/user.php';
+    require_once '../utils/testInputUtility.php';
+    require_once '../utils/tokenUtility.php';
 
     header('Content-type: application/json');
 
