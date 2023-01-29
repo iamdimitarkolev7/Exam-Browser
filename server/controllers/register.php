@@ -2,17 +2,15 @@
     require_once '../models/user.php';
     require_once '../utils/testInputUtility.php';
 
-    header('Content-type: application/json');
+    header('Content-type: application/x-www-form-urlencoded');
 
     $errors = [];
 
     if ($_POST) {
-        $data = json_decode($_POST['data'], true);
-
-        $username = isset($data['userName']) ? testInput($data['userName']) : '';
-        $password = isset($data['password']) ? testInput($data['password']) : '';
-        $confirmPassword = isset($data['confirmPassword']) ? testInput($data['confirmPassword']) : '';
-        $email = isset($data['email']) ? testInput($data['email']) : '';
+        $username = isset($_POST['userName']) ? testInput($_POST['userName']) : '';
+        $password = isset($_POST['password']) ? testInput($_POST['password']) : '';
+        $confirmPassword = isset($_POST['confirmPassword']) ? testInput($_POST['confirmPassword']) : '';
+        $email = isset($_POST['email']) ? testInput($_POST['email']) : '';
 
         if (!$username) {
             $errors[] = 'Username is required';

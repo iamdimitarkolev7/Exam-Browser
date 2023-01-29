@@ -1,7 +1,7 @@
 <?php
     require_once "../db/db.php";
 
-    class Mark {
+    class Test {
         private $id;
         private $studentFn;
         private $mark;

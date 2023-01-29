@@ -26,9 +26,9 @@
 
         private function init($type, $host, $name, $user, $password) {
             try {
-                $this->connection = new PDO("$type:host=$host;dbname=$name", $user, $password,
-                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-
+                $this->connection = new PDO("mysql:host=" . "localhost" . ";dbname=" . "exam-browser-api", "root", "");
+                echo(phpversion());
+                echo var_dump($this->connection);
                 $this->prepareStatements();
             } catch(PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();

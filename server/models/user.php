@@ -2,10 +2,13 @@
     require_once "../db/db.php";
 
     class User {
+        private $id;
+        private $first_name;
+        private $last_name;
         private $username;
-        private $password;
         private $email;
-        private $userId;
+        private $password;
+        private $role;
 
         private $db;
 
