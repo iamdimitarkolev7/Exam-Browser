@@ -2,7 +2,7 @@
     require_once '../models/test.php';
     require_once '../utils/testInputUtility.php';
 
-    header('Content-Type: application/json');
+    header('Content-type: application/x-www-form-urlencoded');
 
     session_start();
 

@@ -3,7 +3,7 @@
     require_once '../utils/testInputUtility.php';
     require_once '../utils/tokenUtility.php';
 
-    header('Content-type: application/json');
+    header('Content-type: application/x-www-form-urlencoded');
 
     session_start();
 
