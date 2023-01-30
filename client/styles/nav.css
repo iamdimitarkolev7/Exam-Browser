@@ -1,92 +1,64 @@
-nav {
-    margin:50px auto 0;
+@import url('https://fonts.googleapis.com/css2?family=Potta+One&display=swap');
 
-    position:relative;
-    width: 800px;
-    height: 60px;
-    background-color: #34495e;
-    border-radius: 8px;
-    font-size: 0;
-
+.navbar {
+  background-color: ghostwhite;
+  position: relative;
+  border-radius: 20px;
+  margin: 40px 200px 0 200px;
+  display: flex;
 }
 
-.logo img{
-    margin-top: -40px;
-    position:absolute;
-    width: 200px;
-    height: 165px;
-    cursor: pointer;
-    left: 210px;
-    z-index:10;
+.navbar .logo {
+  background-color: ghostwhite;
+  text-decoration: none;
+  width: 30%;
+  height: 30%;
+  margin-left: 50px;
+  display: flex;
+  cursor: pointer;
 }
 
-nav a {
-    line-height: 60px;
-    height: 100%;
-    font-size:15px;
-    display:inline-block;
-    position:relative;
-    z-index: 1;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-    color: white;
-    cursor:pointer;
-}
-nav .animation {
-    position:absolute;
-    height: 100%;
-    top:0;
-    z-index: 0;
-    transition: all .5s ease 0s;
-    border-radius:8px;
-}
-a:nth-child(1) {
-    width: 160px;
-}
-a:nth-child(2) {
-    width: 160px;
-}
-a:nth-child(3) {
-    width: 160px;
-}
-a:nth-child(4) {
-    width: 160px;
-}
-a:nth-child(5) {
-    width: 160px;
-}
-nav .start-home, a:nth-child(1):hover~.animation {
-    width: 160px;
-    left: 0;
-    background-color: #dfa32c;
-}
-nav .start-create_test, a:nth-child(2):hover~.animation {
-    width: 160px;
-    left: 160px;
-    background-color: #dfa32c;
-}
-nav .start-show_students, a:nth-child(3):hover~.animation {
-    width: 160px;
-    left: 320px;
-    background-color: #dfa32c;
-}
-nav .start-my_profile, a:nth-child(4):hover~.animation {
-    width: 160px;
-    left: 480px;
-    background-color: #dfa32c;
-}
-nav .start-logout, a:nth-child(5):hover~.animation {
-    width: 160px;
-    left: 640px;
-    background-color: #dfa32c;
+.navbar .logo img {
+  background-color: ghostwhite;
+  margin: 15px 2px 15px 0;
+  width: 65px;
 }
 
-body {
-    font-size: 12px;
-    font-family: sans-serif;
+.navbar .logo p {
+  background-color: ghostwhite;
+  font-family: 'Potta One', cursive;
+  text-decoration: none;
+  color: #00BB77;
+  margin: 0 auto;
+  margin-left: 5px;
+  font-size: 30px;
 }
 
-span {
-    color: #222fdd;
+.navbar ul {
+  width: 100%;
+  background-color: ghostwhite;
+  display: flex;
+  justify-content: flex-end;
+  margin: auto;
+}
+
+.navbar ul li {
+  padding-right: 80px;
+  background-color: ghostwhite;
+  list-style-type: none;
+}
+
+.navbar .links {
+  width: 70px;
+  height: 20px;
+  text-decoration: none;
+  list-style-type: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 10px 15px 15px 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #00BB77;
+  color: ghostwhite;
 }
