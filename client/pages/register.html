@@ -7,7 +7,49 @@
   <script defer src="../scripts/sendRequestUtility.js"></script>
   <script defer src="../scripts/register.js"></script>
   <link rel="stylesheet" href="../styles/styles.css"/>
+  <link rel="stylesheet" href="../styles/nav.css"/>
+  <link rel="stylesheet" href="../styles/register.css">
 </head>
 <body>
+  <nav class="navbar">
+    <a href="./index.html" class="logo">
+      <img src="../images/logo.png" alt="logo">
+      <p class="logo-text">Exam Browser</p>
+    </a>
+    <ul>
+      <li><a class="links" href="./register.html">Sign In</a></li>
+      <li><a class="links" href="./login.html">Sign Up</a></li>
+    </ul>
+  </nav>
+  <form class="register-form">
+    <p class="form-title">Sign In</p>
+    <div class="form-input">
+      <input type="text" placeholder="First Name" id="first-name"/>
+    </div>
+    <div class="form-input">
+      <input type="text" placeholder="Last Name" id="last-name"/>
+    </div>
+    <div class="form-input">
+      <input type="text" placeholder="Username" id="username"/>
+    </div>
+    <fieldset class="form-fieldset">
+      <legend>User role:</legend>
+      <div>
+        <input type="radio" id="teacher" name="teacher" value="teacher" onclick="checkTeacherBtn()" checked/>
+        <label for="teacher">Teacher</label>
+
+        <input type="radio" id="student" name="student" value="student" onclick="checkStudentBtn()"/>
+        <label for="student">Student</label>
+      </div>
+    </fieldset>
+    </div>
+    <div class="form-input">
+      <input type="password" placeholder="Password" id="password"/>
+    </div>
+    <div class="form-input">
+      <input type="password" placeholder="Repeat Password" id="repeat-password"/>
+    </div>
+    <button id="sign-in-btn" type="submit">SIGN IN</button>
+</form>
 </body>
 </html>

@@ -1,0 +1,53 @@
+.register-form {
+  margin: 0 auto;
+  margin-top: 30px;
+  padding-left: 50px;
+  background-color: ghostwhite;
+  border-radius: 5px;
+  width: 20%;
+}
+
+.form-title {
+  padding-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.form-input {
+  margin: 25px 0;
+}
+
+.form-input input {
+  width: 80%;
+  height: 30px;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+  padding: 6px 0 5px 10px;
+}
+
+.form-input input::placeholder {
+  color: lightslategrey;
+}
+
+.form-fieldset {
+  width: 75%;
+  margin: 25px 0;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+}
+
+#sign-in-btn {
+  width: 80%;
+  height: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  background-color: #00BB77;
+  border: transparent;
+  border-radius: 5px;
+  color: ghostwhite;
+  font-size: 14px;
+}
+
+#sign-in-btn:hover {
+  cursor: pointer;
+}

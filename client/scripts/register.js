@@ -1,68 +1,64 @@
 (function() {
-    /**
-     * Get the register button
-     */
-    var register = document.getElementById('register');
+    let register = document.getElementById('register');
   
-    /**
-     * Listen for click event on the register button
-     */
     register.addEventListener('click', sendForm);
-  })();
+})();
   
-  /**
-  * Handle the click event by sending an asynchronous request to the server
-  * @param {*} event
-  */
-  function sendForm(event) {
-    /**
-     * Prevent the default behavior of the clicking the form submit button
-     */
-    event.preventDefault();
+function sendForm(event) {
+  event.preventDefault();
   
-    /**
-     * Get the values of the input fields
-     */
-    var userName = document.getElementById('user-name').value;
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('confirm-password').value;
-    var email = document.getElementById('email').value;
-  
-    /**
-     * Create an object with the user's data
-     */
-    var user = {
-      userName: userName,
-      password: password,
-      confirmPassword: confirmPassword,
-      email: email
-    };
-  
-    /**
-     * Send POST request with user's data to registration.php
-     */
-    sendRequest('./src/register.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
+  let firstName = document.getElementById('first-name').value;
+  let lastName = document.getElementById('last-name').value;
+  let username = document.getElementById('user-name').value;
+  let password = document.getElementById('password').value;
+  let confirmPassword = document.getElementById('confirm-password').value;
+
+  let role;
+
+  if (document.getElementById('student').checked) {
+    role = 1;
+  } else if (document.getElementById('teacher').checked) {
+    role = 2;
   }
   
-  /**
-  * Handle the received response from the server
-  * If there were no errors found on validation, the login.html is loaded.
-  * Else the errors are displayed to the user.
-  * @param {*} response
-  */
-  function load(response) {
-    var errors = document.getElementById('errors');
-    errors.innerHTML = '';
-    errors.style.display = 'none';
+  let user = { firstName, lastName, username, password, confirmPassword, role };
 
-    window.location = './login.html';
-  }
+  sendRequest('../../server/controllers/register.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
+}
 
-  function handleError(error) {
-    var errors = document.getElementById('errors');
+function load(response) {
+  let errors = document.getElementById('errors');
+  errors.innerHTML = '';
+  errors.style.display = 'none';
 
-    errors.style.display = 'block';
-    errors.style.color = 'red';
+  // TODO: handle response
 
-    errors.innerHTML = error['message'];
-  }
+  window.location = './login.html';
+}
+
+function handleError(error) {
+  let errors = document.getElementById('errors');
+
+  errors.style.display = 'block';
+  errors.style.color = 'red';
+
+  // TODO: handle errors
+
+  errors.innerHTML = error['message'];
+}
+
+function checkTeacherBtn() {
+  const teacherRadiobutton = document.getElementById('teacher');
+  const studentRadioBtn = document.getElementById('student');
+
+  studentRadioBtn.checked = false;
+  teacherRadiobutton.checked = true;
+}
+
+function checkStudentBtn() {
+  const teacherRadiobutton = document.getElementById('teacher');
+  const studentRadioBtn = document.getElementById('student');
+
+  studentRadioBtn.checked = true;
+  teacherRadiobutton.checked = false;
+}

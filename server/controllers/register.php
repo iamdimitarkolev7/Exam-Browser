@@ -7,10 +7,20 @@
     $errors = [];
 
     if ($_POST) {
-        $username = isset($_POST['userName']) ? testInput($_POST['userName']) : '';
+        $firstName = isset($_POST['firstName']) ? testInput($_POST['firstName']) : '';
+        $lastName = isset($_POST['lastName']) ? testInput($_POST['lastName']) : '';
+        $username = isset($_POST['username']) ? testInput($_POST['username']) : '';
         $password = isset($_POST['password']) ? testInput($_POST['password']) : '';
         $confirmPassword = isset($_POST['confirmPassword']) ? testInput($_POST['confirmPassword']) : '';
-        $email = isset($_POST['email']) ? testInput($_POST['email']) : '';
+        $role = isset($_POST['role']) ? testInput($_POST['role']) : '';
+
+        if (!$firstName) {
+            $errors[] = 'First Name is required';
+        }
+
+        if (!$lastName) {
+            $errors[] = 'Last Name is required';
+        }
 
         if (!$username) {
             $errors[] = 'Username is required';
