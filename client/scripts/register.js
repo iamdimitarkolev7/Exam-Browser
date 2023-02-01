@@ -37,7 +37,7 @@ async function sendForm(event) {
   if (response.success) {
     load(response);
   } else {
-    handleError(response);
+    showError(response);
   }
 }
 
@@ -46,13 +46,11 @@ function load(response) {
   errors.innerHTML = '';
   errors.style.display = 'none';
 
-  setCookie('id', response.id);
-  setCookie('firstName', response.firstName);
-  setCookie('lastName', response.lastName);
-  setCookie('username', response.username);
-  setCookie('role', response.role);
-
-  window.location = '../pages/index.html';
+  if (response.role == 1) {
+    window.location = './student.html';
+  } else if (response.role == 2) {
+    window.location = './teacher.html';
+  }
 }
 
 function handleError(error) {
@@ -62,6 +60,14 @@ function handleError(error) {
   errors.style.color = 'red';
 
   errors.innerHTML = error['message'];
+}
+
+function showError(errors) {
+  handleError(errors);
+  setTimeout(() => {
+    let errors = document.getElementById('errors');
+    errors.style.display='none';
+  }, 4000);
 }
 
 function checkTeacherBtn() {
