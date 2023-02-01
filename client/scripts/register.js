@@ -22,17 +22,17 @@ function sendForm(event) {
   }
   
   let user = { firstName, lastName, username, password, confirmPassword, role };
-  console.log(Object.entries(user).map(([k,v])=>{return k+'='+v}).join('&'));
 
   fetch('http://localhost/exam-browser-api/server/controllers/register.php', {
     method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    headers: { 
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded' 
+    },
     body: Object.entries(user).map(([k,v])=>{return k+'='+v}).join('&')
   })
-  .then(response => console.log(response));
-
-  //sendRequest('../../server/controllers/register.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
+  .then(response => console.log(response.json()))
+  .then(response => console.log(JSON.parse(response)));
 }
 
 function load(response) {

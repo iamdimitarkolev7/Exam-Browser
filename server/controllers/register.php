@@ -2,6 +2,7 @@
     require_once '../models/user.php';
     require_once '../utils/testInputUtility.php';
 
+    header('Access-Control-Allow-Origin: *');
     header('Content-type: application/x-www-form-urlencoded');
 
     $errors = [];
