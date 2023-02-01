@@ -4,7 +4,7 @@
     register.addEventListener('click', sendForm);
 })();
   
-function sendForm(event) {
+async function sendForm(event) {
   event.preventDefault();
   
   let firstName = document.getElementById('first-name').value;
@@ -23,16 +23,22 @@ function sendForm(event) {
   
   let user = { firstName, lastName, username, password, confirmPassword, role };
 
-  fetch('http://localhost/exam-browser-api/server/controllers/register.php', {
+  const request = await fetch('http://localhost/exam-browser-api/server/controllers/register.php', {
     method: 'POST',
     headers: { 
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded' 
     },
     body: Object.entries(user).map(([k,v])=>{return k+'='+v}).join('&')
-  })
-  .then(response => console.log(response.json()))
-  .then(response => console.log(JSON.parse(response)));
+  });
+
+  const response = await request.json();
+
+  if (response.success) {
+    load(response);
+  } else {
+    handleError(response);
+  }
 }
 
 function load(response) {
@@ -40,9 +46,11 @@ function load(response) {
   errors.innerHTML = '';
   errors.style.display = 'none';
 
-  console.log(response);
-
-  window.location = './login.html';
+  if (response.role == 1) {
+    window.location = './student.html';
+  } else if (response.role == 2) {
+    window.location = './teacher.html';
+  }
 }
 
 function handleError(error) {
@@ -50,8 +58,6 @@ function handleError(error) {
 
   errors.style.display = 'block';
   errors.style.color = 'red';
-
-  // TODO: handle errors
 
   errors.innerHTML = error['message'];
 }

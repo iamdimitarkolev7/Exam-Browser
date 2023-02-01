@@ -58,6 +58,13 @@
     if ($errors) {
         echo json_encode(['success' => false, 'message' => $errors]);
     } else {
-        echo json_encode(['success' => true, 'message' => 'User created successfully']);
+        echo json_encode([
+            'success' => true,
+            'message' => 'User created successfully',
+            'id' => $id,
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'username' => $username,
+            'role' => $role]);
     }
 ?>
