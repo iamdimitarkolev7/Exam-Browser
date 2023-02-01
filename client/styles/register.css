@@ -51,3 +51,11 @@
 #sign-in-btn:hover {
   cursor: pointer;
 }
+
+.errors {
+  display: none;
+  margin: 0 auto;
+  width: 300px;
+  height: 150px;
+  background-color: ghostwhite;
+}

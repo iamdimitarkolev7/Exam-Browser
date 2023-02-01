@@ -3,32 +3,47 @@
 
     class User {
         private $id;
-        private $first_name;
-        private $last_name;
+        private $firstName;
+        private $lastName;
         private $username;
-        private $email;
         private $password;
         private $role;
 
         private $db;
 
-        public function __construct($username, $password) {
+        public function __construct($id, $firstName, $lastName, $username, $password, $role) {
+            $this->id = $id;
+            $this->firstName = $firstName;
+            $this->lastName = $lastName;
             $this->username = $username;
             $this->password = $password;
+            $this->role = $role;
 
             $this->db = new Database();
+        }
+
+        public function getUserId() {
+            return $this->id;
+        }
+
+        public function getFirstName() {
+            return $this->firstName;
+        }
+
+        public function getLastName() {
+            return $this->lastName;
         }
 
         public function getUsername() {
             return $this->username;
         }
 
-        public function getEmail() {
-            return $this->email;
+        public function getPassword() {
+            return $this->password;
         }
 
-        public function getUserId() {
-            return $this->userId;
+        public function getRole() {
+            return $this->role;
         }
 
         public function exists() {
@@ -39,8 +54,7 @@
 
                 if ($userData) {
                     $this->password = $userData['password'];
-                    $this->email = $userData['email'];
-                    $this->userId = $userData['id'];
+                    $this->id = $userData['id'];
 
                     return true;
                 } else {
@@ -61,18 +75,28 @@
                     return password_verify($this->password, $user['password']);
                 } else {
                     return false;
-                }             
+                }
             } else {
                 return false;
             }
         }
 
-        public function createUser($passwordHash, $email) {
-            $query = $this->db->insertUserQuery(['username' => $this->username, 'password' => $passwordHash, 'email' => $email]);
+        public function createUser($id, $firstName, $lastName, $username, $passwordHash, $role) {
+            $query = $this->db->insertUserQuery([
+                'id' => $id,
+                'firstName' => $firstName,
+                'lastName' => $lastName,
+                'username' => $username,
+                'password' => $passwordHash,
+                'role' => $role]);
 
             if ($query['success']) {
+                $this->id = $id;
+                $this->firstName = $firstName;
+                $this->lastName = $lastName;
+                $this->username = $username;
                 $this->password = $passwordHash;
-                $this->email = $email;
+                $this->role = $role;
             }
         }
     }

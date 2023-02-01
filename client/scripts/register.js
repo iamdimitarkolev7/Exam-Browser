@@ -1,5 +1,5 @@
 (function() {
-    let register = document.getElementById('register');
+    let register = document.getElementById('sign-in-btn');
   
     register.addEventListener('click', sendForm);
 })();
@@ -9,9 +9,9 @@ function sendForm(event) {
   
   let firstName = document.getElementById('first-name').value;
   let lastName = document.getElementById('last-name').value;
-  let username = document.getElementById('user-name').value;
+  let username = document.getElementById('username').value;
   let password = document.getElementById('password').value;
-  let confirmPassword = document.getElementById('confirm-password').value;
+  let confirmPassword = document.getElementById('repeat-password').value;
 
   let role;
 
@@ -23,7 +23,15 @@ function sendForm(event) {
   
   let user = { firstName, lastName, username, password, confirmPassword, role };
 
-  sendRequest('../../server/controllers/register.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
+  fetch('http://localhost/exam-browser-api/server/controllers/register.php', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data: JSON.stringify(user)
+  })
+  .then(response => console.log(response))
+
+  //sendRequest('../../server/controllers/register.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
 }
 
 function load(response) {
@@ -31,7 +39,7 @@ function load(response) {
   errors.innerHTML = '';
   errors.style.display = 'none';
 
-  // TODO: handle response
+  console.log(response);
 
   window.location = './login.html';
 }

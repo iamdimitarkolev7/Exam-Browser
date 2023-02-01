@@ -59,7 +59,8 @@
             $sql = "SELECT * FROM tokens WHERE token=:token";
             $this->selectToken = $this->connection->prepare($sql);
 
-            $sql = "INSERT INTO users(username, password, email) VALUES (:username, :password, :email)";
+            $sql = "INSERT INTO users(id, firstName, lastName, username, password, role) VALUES
+                    (:id, :firstName, :lastName, :username, :password, :role)";
             $this->insertUser = $this->connection->prepare($sql);
 
             $sql = "SELECT firstName, lastName, fn, mark FROM students JOIN marks ON fn = studentFN";
@@ -121,7 +122,6 @@
 
         public function selectUserQuery($data) {
             try {
-                // ["user" => "..."]
                 $this->selectUser->execute($data);
 
                 return ["success" => true, "data" => $this->selectUser];

@@ -7,6 +7,7 @@
     $errors = [];
 
     if ($_POST) {
+        $id = uniqid();
         $firstName = isset($_POST['firstName']) ? testInput($_POST['firstName']) : '';
         $lastName = isset($_POST['lastName']) ? testInput($_POST['lastName']) : '';
         $username = isset($_POST['username']) ? testInput($_POST['username']) : '';
@@ -38,14 +39,14 @@
             if ($confirmPassword !== $password) {
                 $errors[] = 'Confirm password does not match password';
             } else {
-                $user = new User($username, $password);
+                $user = new User($id, $firstName, $lastName, $username, $password, $role);
                 $userExist = $user->exists();
 
                 if ($userExist) {
                     $errors[] = 'User already exists';
                 } else {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $user->createUser($passwordHash, $email);
+                    $user->createUser($id, $firstName, $lastName, $username, $passwordHash, $role);
                 }
             }
         }
