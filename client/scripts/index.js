@@ -1,3 +1,5 @@
+
+
 (function() {
     var submitButton = document.getElementById('submit');
     submitButton.addEventListener('click', sendForm);
@@ -74,4 +76,39 @@
     window.location = './login.html';
   }
 
-  
+(function() {
+  const signInButton = document.getElementById('sign-in-btn');
+  const signUpButton = document.getElementById('sign-up-btn');
+  const createTestButton = document.getElementById('create-test-btn');
+  const showTestsButton = document.getElementById('show-tests-btn');
+  const myProfileButton = document.getElementById('my-profile-btn');
+  const logoutButton = document.getElementById('logout-btn');
+
+  const authorisedUser = getCookie('username');
+
+  if (authorisedUser) {
+    const userRole = getCookie('role');
+
+    myProfileButton.display = block;
+    logoutButton.display = block;
+    if (userRole == 1) {
+      signInButton.display = none;
+      signUpButton.display = none;
+      createTestButton.display = none;
+      showTestsButton.display = block;
+    } else if (userRole == 2) {
+      signInButton.display = none;
+      signUpButton.display = none;
+      createTestButton.display = block;
+      showTestsButton.display = none;
+    }
+  } else {
+    signInButton.display = block;
+    signUpButton.display = block;
+    createTestButton.display = none;
+    showTestsButton.display = none;
+    myProfileButton.display = none;
+    logoutButton.display = none;
+  }
+})();
+

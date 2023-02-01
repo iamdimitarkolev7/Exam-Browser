@@ -41,7 +41,7 @@ function sendForm(event) {
     /**
      * Send POST request with user's data to api.php/login
      */
-    sendRequest('src/login.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
+    //sendRequest('src/login.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
 }
 
 /**

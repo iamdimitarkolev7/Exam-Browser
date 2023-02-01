@@ -13,7 +13,7 @@ async function sendForm(event) {
   let password = document.getElementById('password').value;
   let confirmPassword = document.getElementById('repeat-password').value;
 
-  let role;
+  let role = 0;
 
   if (document.getElementById('student').checked) {
     role = 1;
@@ -46,11 +46,13 @@ function load(response) {
   errors.innerHTML = '';
   errors.style.display = 'none';
 
-  if (response.role == 1) {
-    window.location = './student.html';
-  } else if (response.role == 2) {
-    window.location = './teacher.html';
-  }
+  setCookie('id', response.id);
+  setCookie('firstName', response.firstName);
+  setCookie('lastName', response.lastName);
+  setCookie('username', response.username);
+  setCookie('role', response.role);
+
+  window.location = '../pages/index.html';
 }
 
 function handleError(error) {
