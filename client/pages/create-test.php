@@ -25,12 +25,15 @@
     <p class="error-msg"></p>
   </div>
   <form class="create-json-form">
+<<<<<<< Updated upstream:client/pages/create-test.php
     <p class="json-info-txt">Upload a json file that contains following information:
+=======
+    <p class="json-info-txt">Upload a json file that contains following information: </p>
+>>>>>>> Stashed changes:client/pages/create-test.html
         <ul class="json-info-list">
             <li>N questions with 4 possibilities</li>
             <li>Correct answer for every question</li>
         </ul>
-    </p>
     <button id="create-json-button" type="submit">UPLOAD JSON</button>
   </form>
 </body>
