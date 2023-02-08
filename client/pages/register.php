@@ -17,8 +17,8 @@
       <p class="logo-text">Exam Browser</p>
     </a>
     <ul>
-      <li><a class="links" href="./register.php">Sign In</a></li>
-      <li><a class="links" href="./login.php">Sign Up</a></li>
+      <li><a class="links" href="./login.php">Sign In</a></li>
+      <li><a class="links" href="./register.php">Sign Up</a></li>
     </ul>
   </nav>
   <div id="errors">
