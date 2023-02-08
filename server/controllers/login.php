@@ -35,14 +35,12 @@
                     $_SESSION['username'] = $username;
                     $_SESSION['userId'] = $user->getUserId();
 
-                    if($remember) {
-                        $tokenHash = bin2hex(random_bytes(8));
-                        $expires = time() + 60 * 60 * 24 * 30;
-                        $token = new TokenUtility();
-                        $token->createToken($tokenHash, $user->getUserId(), $expires);
+                    $tokenHash = bin2hex(random_bytes(8));
+                    $expires = time() + 60 * 60 * 24 * 30;
+                    $token = new TokenUtility();
+                    $token->createToken($tokenHash, $user->getUserId(), $expires);
 
-                        setcookie('remember', $tokenHash, $expires, '/');
-                    }
+                    setcookie('remember', $tokenHash, $expires, '/');
                 } else {
                     $errors[] = 'Password is invalid';
                 }

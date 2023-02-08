@@ -13,7 +13,7 @@
         private $selectStudentsWithMarks;
 
         public function __construct() {
-            $config = parse_ini_file('../config/config.ini', true);
+            $config = parse_ini_file('../../config.ini', true);
 
             $type = $config['db']['db_type'];
             $host = $config['db']['host'];

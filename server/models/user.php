@@ -72,7 +72,7 @@
                 $user = $query["data"]->fetch(PDO::FETCH_ASSOC);
 
                 if ($user) {
-                    return password_verify($this->password, $user['password']);
+                    return password_verify($password, $user['password']);
                 } else {
                     return false;
                 }

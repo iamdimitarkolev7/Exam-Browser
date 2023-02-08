@@ -12,20 +12,20 @@
 </head>
 <body>
   <nav class="navbar">
-    <a href="./index.html" class="logo">
-      <img src="../images/logo.png" alt="logo">
+    <a href="./index.php" class="logo">
+      <img src="../../images/logo.png" alt="logo">
       <p class="logo-text">Exam Browser</p>
     </a>
     <ul>
-      <li><a class="links" href="./login.html">Sign In</a></li>
-      <li><a class="links" href="./register.html">Sign Up</a></li>
+      <li><a class="links" href="./register.php">Sign In</a></li>
+      <li><a class="links" href="./login.php">Sign Up</a></li>
     </ul>
   </nav>
   <div id="errors">
     <p class="error-msg"></p>
   </div>
   <form class="register-form">
-    <p class="form-title">Sign Up</p>
+    <p class="form-title">Sign In</p>
     <div class="form-input">
       <input type="text" placeholder="First Name" id="first-name"/>
     </div>
@@ -52,7 +52,7 @@
     <div class="form-input">
       <input type="password" placeholder="Repeat Password" id="repeat-password"/>
     </div>
-    <button id="sign-in-btn" type="submit">SIGN UP</button>
+    <button id="sign-in-btn" type="submit">SIGN IN</button>
 </form>
 </body>
 </html>

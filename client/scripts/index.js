@@ -1,114 +1,47 @@
-
-
-(function() {
-    var submitButton = document.getElementById('submit');
-    submitButton.addEventListener('click', sendForm);
-  
-    /**
-     * Get the logout button
-     */
-     var logoutBtn = document.getElementById('logout');
-     /**
-      * Listen for click event on the logout button
-      */
-     logoutBtn.addEventListener('click', logout);
-  
-    // TODO: Send request for getting all students' marks
-
-    sendRequest('src/index.php', { method: 'GET' }, loadStudents, handleError);
-  })();
-  
-  function sendForm(event) {
-    event.preventDefault();
-  
-    var firstName = document.getElementById('first-name').value;
-    var lastName = document.getElementById('last-name').value;
-    var fn = document.getElementById('fn').value;
-    var mark = document.getElementById('mark').value;
-  
-    var data = {
-        firstName,
-        lastName,
-        fn,
-        mark
-    };
-  
-  }
-  
-  function addStudentMark(studentData) {
-    var studentTable = document.getElementById('marks');
-    var tr = document.createElement('tr');
-  
-    Object.values(studentData).forEach(function(data) {
-        var td = document.createElement('td');
-        td.innerHTML = data;
-        tr.appendChild(td);
-    });
-  
-    studentTable.appendChild(tr);
-  }
-  
-  function loadStudents(studentsData) {
-  
-  }
-  
-  function handleError(errors) {
-    window.location = './login.html';
-  }
-  
-  /**
-  * Handle the click event by sending an asynchronous request to the server
-  * @param {*} event
-  */
-  function logout(event) {
-    /**
-     * Prevent the default behavior of the clicking the form submit button
-     */
-    event.preventDefault();
-  
-    /**
-     * Send GET request to api.php/logout to logout the user
-     */
-    sendRequest('src/logout.php', { method: 'GET' }, redirect, handleError);
-  }
-  
-  function redirect() {
-    window.location = './login.html';
-  }
-
-(function() {
-  const signInButton = document.getElementById('sign-in-btn');
-  const signUpButton = document.getElementById('sign-up-btn');
-  const createTestButton = document.getElementById('create-test-btn');
-  const showTestsButton = document.getElementById('show-tests-btn');
-  const myProfileButton = document.getElementById('my-profile-btn');
-  const logoutButton = document.getElementById('logout-btn');
-
-  const authorisedUser = getCookie('username');
-
-  if (authorisedUser) {
-    const userRole = getCookie('role');
-
-    myProfileButton.display = block;
-    logoutButton.display = block;
-    if (userRole == 1) {
-      signInButton.display = none;
-      signUpButton.display = none;
-      createTestButton.display = none;
-      showTestsButton.display = block;
-    } else if (userRole == 2) {
-      signInButton.display = none;
-      signUpButton.display = none;
-      createTestButton.display = block;
-      showTestsButton.display = none;
+function loadSession() {
+  getData('http://localhost:80/exam-browser-api/server/controllers/index.php')
+  .then(response => {
+    setUnathorizedUserButtons(response.role);
+  })
+  .catch(err => {
+    if (err) {
+      setUnathorizedUserButtons();
     }
-  } else {
-    signInButton.display = block;
-    signUpButton.display = block;
-    createTestButton.display = none;
-    showTestsButton.display = none;
-    myProfileButton.display = none;
-    logoutButton.display = none;
-  }
-})();
+  });
+}
 
+function setAuthorizedUserNavButtons(role) {
+  let signInBtn = document.getElementById('sign-in-btn');
+  let signUpBtn = document.getElementById('sign-up-btn');
+  let showTestsBtn = document.getElementById('show-tests-btn');
+  let createTestBtn = document.getElementById('create-test-btn');
+  let myProfileBtn = document.getElementById('my-profile-btn');
+  let logoutBtn = document.getElementById('logout-btn');
+
+  if (role === 1) {
+    showTestsBtn.style.display = 'block';
+  } else if (role === 2) {
+    createTestBtn.style.display = 'block';
+  }
+
+  signInBtn.style.display = 'none';
+  signUpBtn.style.display = 'none';
+  myProfileBtn.style.display = 'block';
+  logoutBtn.style.display = 'block';
+}
+
+function setUnathorizedUserButtons() {
+  let signInBtn = document.getElementById('sign-in-btn');
+  let signUpBtn = document.getElementById('sign-up-btn');
+  let showTestsBtn = document.getElementById('show-tests-btn');
+  let createTestBtn = document.getElementById('create-test-btn');
+  let myProfileBtn = document.getElementById('my-profile-btn');
+  let logoutBtn = document.getElementById('logout-btn');
+
+  signInBtn.style.display = 'block';
+  signUpBtn.style.display = 'block';
+  showTestsBtn.style.display = 'none';
+  createTestBtn.style.display = 'none';
+  myProfileBtn.style.display = 'none';
+  logoutBtn.style.display = 'none';
+}

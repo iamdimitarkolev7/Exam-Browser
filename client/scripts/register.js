@@ -46,11 +46,7 @@ function load(response) {
   errors.innerHTML = '';
   errors.style.display = 'none';
 
-  if (response.role == 1) {
-    window.location = './student.html';
-  } else if (response.role == 2) {
-    window.location = './teacher.html';
-  }
+  window.location = '../pages/index.php';
 }
 
 function handleError(error) {

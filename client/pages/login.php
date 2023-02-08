@@ -8,17 +8,17 @@
   <script defer src="../scripts/login.js"></script>
   <link rel="stylesheet" href="../styles/styles.css"/>
   <link rel="stylesheet" href="../styles/nav.css"/>
-  <link rel="stylesheet" href="../styles/login.css">
+  <link rel="stylesheet" href="../styles/login.css"/>
 </head>
 <body>
-  <nav class="navbar">
-    <a href="./index.html" class="logo">
-      <img src="../images/logo.png" alt="logo">
+<nav class="navbar">
+    <a href="./index.php" class="logo">
+      <img src="../../images/logo.png" alt="logo">
       <p class="logo-text">Exam Browser</p>
     </a>
     <ul>
-      <li><a class="links" href="./login.html">Sign In</a></li>
-      <li><a class="links" href="./register.html">Sign Up</a></li>
+      <li><a class="links" href="./login.php">Sign In</a></li>
+      <li><a class="links" href="./register.php">Sign Up</a></li>
     </ul>
   </nav>
   <div id="errors">

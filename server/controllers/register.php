@@ -48,6 +48,17 @@
                 } else {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                     $user->createUser($id, $firstName, $lastName, $username, $passwordHash, $role);
+
+                    $_SESSION['username'] = $user->getUsername();
+                    $_SESSION['userId'] = $user->getUserId();
+                    $_SESSION['userRole'] = $user->getRole();
+
+                    $tokenHash = bin2hex(random_bytes(8));
+                    $expires = time() + 60 * 60 * 24 * 30;
+                    $token = new TokenUtility();
+                    $token->createToken($tokenHash, $user->getUserId(), $expires);
+    
+                    setcookie('remember', $tokenHash, $expires, '/');
                 }
             }
         }
@@ -58,6 +69,11 @@
     if ($errors) {
         echo json_encode(['success' => false, 'message' => $errors]);
     } else {
+        if (isset($_SESSION)) {
+            $_SESSION['userId'] = $id;
+            $_SESSION['userRole'] = $role;
+        }
+
         echo json_encode([
             'success' => true,
             'message' => 'User created successfully',

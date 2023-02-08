@@ -12,20 +12,20 @@
 </head>
 <body>
   <nav class="navbar">
-    <a href="./index.html" class="logo">
-      <img src="../images/logo.png" alt="logo">
+    <a href="./index.php" class="logo">
+      <img src="../../images/logo.png" alt="logo">
       <p class="logo-text">Exam Browser</p>
     </a>
     <ul>
-      <li><a class="links" href="./login.html">Sign In</a></li>
-      <li><a class="links" href="./register.html">Sign Up</a></li>
+      <li><a class="links" href="./login.php">Sign In</a></li>
+      <li><a class="links" href="./register.php">Sign Up</a></li>
     </ul>
   </nav>
   <div id="errors">
     <p class="error-msg"></p>
   </div>
   <form class="create-json-form">
-    <p class="json-info-txt">Upload a json file that contains following information: 
+    <p class="json-info-txt">Upload a json file that contains following information:
         <ul class="json-info-list">
             <li>N questions with 4 possibilities</li>
             <li>Correct answer for every question</li>
