@@ -1,12 +1,11 @@
-(function() {
-    let register = document.getElementById('sign-in-btn');
-  
-    register.addEventListener('click', sendForm);
-})();
-  
-async function sendForm(event) {
-  event.preventDefault();
-  
+const form = document.getElementById('register-form');
+const registerBtn = document.getElementById('sign-in-btn');
+
+form.onsubmit = (e) => {
+  e.preventDefault();
+}
+
+registerBtn.onclick = () => {
   let firstName = document.getElementById('first-name').value;
   let lastName = document.getElementById('last-name').value;
   let username = document.getElementById('username').value;
@@ -23,30 +22,20 @@ async function sendForm(event) {
   
   let user = { firstName, lastName, username, password, confirmPassword, role };
 
-  const request = await fetch('http://localhost/exam-browser-api/server/controllers/register.php', {
-    method: 'POST',
-    headers: { 
-      'Accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded' 
-    },
-    body: Object.entries(user).map(([k,v])=>{return k+'='+v}).join('&')
-  });
-
-  const response = await request.json();
-
-  if (response.success) {
+  sendData('http://localhost:80/exam-browser-api/server/controllers/register.php', user)
+  .then(response => {
     load(response);
-  } else {
-    showError(response);
-  }
+    location.href = './index.php';
+  })
+  .catch(err => {
+    showErrors(err);
+  });
 }
 
 function load(response) {
   let errors = document.getElementById('errors');
   errors.innerHTML = '';
   errors.style.display = 'none';
-
-  window.location = '../pages/index.php';
 }
 
 function handleError(error) {
@@ -58,7 +47,8 @@ function handleError(error) {
   errors.innerHTML = error['message'];
 }
 
-function showError(errors) {
+function showErrors(errors) {
+  console.log(errors);
   handleError(errors);
   setTimeout(() => {
     let errors = document.getElementById('errors');

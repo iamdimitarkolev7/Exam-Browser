@@ -11,7 +11,7 @@
 
         private $db;
 
-        public function __construct($id, $firstName, $lastName, $username, $password, $role) {
+        public function __construct($username, $password, $id, $firstName, $lastName, $role) {
             $this->id = $id;
             $this->firstName = $firstName;
             $this->lastName = $lastName;
@@ -55,6 +55,7 @@
                 if ($userData) {
                     $this->password = $userData['password'];
                     $this->id = $userData['id'];
+                    $this->role = $userData['role'];
 
                     return true;
                 } else {

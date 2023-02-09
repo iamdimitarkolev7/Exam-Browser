@@ -2,7 +2,7 @@
     require_once '../models/user.php';
     require_once '../utils/testInputUtility.php';
 
-    header('Access-Control-Allow-Origin: *');
+    session_start();
     header('Content-type: application/x-www-form-urlencoded');
 
     $errors = [];
@@ -40,7 +40,7 @@
             if ($confirmPassword !== $password) {
                 $errors[] = 'Confirm password does not match password';
             } else {
-                $user = new User($id, $firstName, $lastName, $username, $password, $role);
+                $user = new User($username, $password, $id, $firstName, $lastName, $role);
                 $userExist = $user->exists();
 
                 if ($userExist) {
@@ -48,17 +48,6 @@
                 } else {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
                     $user->createUser($id, $firstName, $lastName, $username, $passwordHash, $role);
-
-                    $_SESSION['username'] = $user->getUsername();
-                    $_SESSION['userId'] = $user->getUserId();
-                    $_SESSION['userRole'] = $user->getRole();
-
-                    $tokenHash = bin2hex(random_bytes(8));
-                    $expires = time() + 60 * 60 * 24 * 30;
-                    $token = new TokenUtility();
-                    $token->createToken($tokenHash, $user->getUserId(), $expires);
-    
-                    setcookie('remember', $tokenHash, $expires, '/');
                 }
             }
         }
@@ -67,12 +56,14 @@
     }
 
     if ($errors) {
+        http_response_code(400);
         echo json_encode(['success' => false, 'message' => $errors]);
     } else {
-        if (isset($_SESSION)) {
-            $_SESSION['userId'] = $id;
-            $_SESSION['userRole'] = $role;
-        }
+        http_response_code(200);
+        
+        $_SESSION['userId'] = $id;
+        $_SESSION['userRole'] = $role;
+        $_SESSION['username'] = $username;
 
         echo json_encode([
             'success' => true,

@@ -1,61 +1,36 @@
-(function () {
-    /**
-     * Get the login button
-     */
-    var login = document.getElementById('login');
+const form = document.getElementById('login-form');
+const loginBtn = document.getElementById('login-btn');
 
-    /**
-     * Listen for click event on the login button
-     */
-    login.addEventListener('click', sendForm);
-})();
-
-/**
- * Handle the click event by sending an asynchronous request to the server
- * @param {*} event
- */
-function sendForm(event) {
-    /**
-     * Prevent the default behavior of the clicking the form submit button
-     */
-     event.preventDefault();
-
-    /**
-     * Get the values of the input fields
-     */
-    var userName = document.getElementById('user-name').value;
-    var password = document.getElementById('password').value;
-    var rememberMe = document.getElementById('remember-me').checked;
-
-    /**
-     * Create an object with the user's data
-     */
-    var user = {
-        userName,
-        password,
-        remember: rememberMe
-    };
-
-    console.log(rememberMe);
-
-    /**
-     * Send POST request with user's data to api.php/login
-     */
-    //sendRequest('src/login.php', { method: 'POST', data: `data=${JSON.stringify(user)}` }, load, handleError);
+form.onsubmit = (e) => {
+  e.preventDefault();
 }
 
-/**
- * Handle the received response from the server
- * If there were no errors found on validation, the index.html is loaded.
- * Else the errors are displayed to the user.
- * @param {*} response
- */
+loginBtn.onclick = () => {
+  let username = document.getElementById('username').value;
+  let password = document.getElementById('password').value;
+  console.log(username);
+  console.log(password);
+
+  let user = {
+    username,
+    password
+  };
+
+  sendData('http://localhost:80/exam-browser-api/server/controllers/login.php', user)
+  .then(response => {
+    console.log(response);
+    load(response);
+    location.href = './index.php';
+  })
+  .catch(err => {
+    console.log(err);
+  });
+}
+
 function load(response) {
     var errors = document.getElementById('errors');
     errors.innerHTML = '';
     errors.style.display = 'none';
-
-    window.location = './index.html';
 }
 
 function handleError(error) {

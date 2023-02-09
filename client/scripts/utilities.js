@@ -6,7 +6,7 @@ const sendHttpRequest = (method, url, data) => {
     xhr.responseType = 'json';
 
     if (data) {
-      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     }
 
     xhr.onload = () => {
@@ -22,11 +22,14 @@ const sendHttpRequest = (method, url, data) => {
     };
 
     if (data) {
+      console.log(data);
+      console.log(Object.entries(data).map(([k,v])=>{return k+'='+v}).join('&'));
       xhr.send(Object.entries(data).map(([k,v])=>{return k+'='+v}).join('&'));
     } else {
       xhr.send();
     }
   });
+
   return promise;
 };
 

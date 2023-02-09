@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if (isset($_SESSION['username'])) {
+    header("location: index.php");
+  }
+?>
 <!DOCTYPE html>
 
 <html>
@@ -17,22 +23,22 @@
       <p class="logo-text">Exam Browser</p>
     </a>
     <ul>
-      <li><a class="links" href="./login.php">Sign In</a></li>
-      <li><a class="links" href="./register.php">Sign Up</a></li>
+      <li><a class="links" href="./register.php">Register</a></li>
+      <li><a class="links" href="./login.php">Login</a></li>
     </ul>
   </nav>
   <div id="errors">
     <p class="error-msg"></p>
   </div>
-  <form class="login-form">
-    <p class="form-title">Sign In</p>
+  <form id="login-form">
+    <p class="form-title">Login</p>
     <div class="login-form-input">
       <input type="text" placeholder="Username" id="username"/>
     </div>
     <div class="login-form-input">
       <input type="password" placeholder="Password" id="password"/>
     </div>
-    <button id="sign-in-btn" type="submit">SIGN IN</button>
+    <button id="login-btn" type="submit">Login</button>
   </div>
 </body>
 </html>
