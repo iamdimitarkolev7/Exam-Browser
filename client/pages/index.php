@@ -22,15 +22,15 @@
   <nav class="navbar">
     <a href="./index.php" class="logo">
       <img src="../../images/logo.png" alt="logo">
-      <p class="logo-text">Exam Browser</p>
+      <p class="logo-text">SEB</p>
     </a>
     <ul>
-      <li><a class="links" id="sign-in-btn" href="./register.php">Register</a></li>
-      <li><a class="links" id="sign-up-btn" href="./login.php">Login</a></li>
-      <li><a class="links" id="show-tests-btn" href="./register.php">Show Tests</a></li>
-      <li><a class="links" id="create-test-btn" href="./register.php">Create Test</a></li>
+      <li><a class="links" id="show-tests-btn" href="./show-tests.php">Show Tests</a></li>
+      <li><a class="links" id="create-test-btn" href="./create-test.php">Create Test</a></li>
       <li><a class="links" id="my-profile-btn" href="./register.php">My Profile</a></li>
       <li><a class="links" id="logout-btn" onclick="logout(event)">Logout</a></li>
+      <li><a class="links" id="sign-in-btn" href="./register.php">Register</a></li>
+      <li><a class="links" id="sign-up-btn" href="./login.php">Login</a></li>
     </ul>
   </nav>
 </body>

@@ -4,15 +4,16 @@
   background-color: ghostwhite;
   position: relative;
   border-radius: 20px;
-  margin: 40px 200px 0 200px;
+  margin: 40px 200px;
   display: flex;
+  flex-direction: row;
 }
 
 .navbar .logo {
   background-color: ghostwhite;
   text-decoration: none;
-  width: 30%;
-  height: 30%;
+  width: 20%;
+  height: 20%;
   margin-left: 50px;
   display: flex;
   cursor: pointer;
@@ -21,7 +22,7 @@
 .navbar .logo img {
   background-color: ghostwhite;
   margin: 15px 2px 15px 0;
-  width: 65px;
+  height: 50px;
 }
 
 .navbar .logo p {
@@ -29,34 +30,33 @@
   font-family: 'Potta One', cursive;
   text-decoration: none;
   color: #00BB77;
-  margin: 0 auto;
   margin-left: 5px;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .navbar ul {
   width: 100%;
-  background-color: ghostwhite;
+  margin-right: 20px;
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
-  margin: auto;
 }
 
 .navbar ul li {
-  padding-right: 80px;
-  background-color: ghostwhite;
   list-style-type: none;
+  margin-right: 30px;
 }
 
 .navbar .links {
-  width: 70px;
+  display: block;
+  width: 90px;
   height: 20px;
   text-decoration: none;
+  text-align: center;
   list-style-type: none;
   font-size: 16px;
   font-weight: bold;
-  margin: 0 auto;
-  padding: 10px 15px 15px 15px;
+  padding: 10px 15px;
   cursor: pointer;
   border-radius: 10px;
   background-color: #00BB77;

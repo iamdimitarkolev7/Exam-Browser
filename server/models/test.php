@@ -3,16 +3,21 @@
 
     class Test {
         private $id;
-        private $studentFn;
-        private $mark;
+        private $testName;
+        private $questions;
+        private $answers;
+        private $correctAnswers;
 
         private $db;
 
-        public function __construct($studentFn, $mark) {
+        public function __construct($id, $testName, $questions, $answers, $correctAnswers) {
             $this->db = new Database();
 
-            $this->studentFn = $studentFn;
-            $this->mark = $mark;
+            $this->id = $id;
+            $this->testName = $testName;
+            $this->questions = $questions;
+            $this->answers = $answers;
+            $this->correctAnswers = $correctAnswers;
         }
 
         public function setId($id) {
@@ -23,49 +28,63 @@
             return $this->id;
         }
 
-        public function setStudentFn($studentFn) {
-            $this->studentFn = $studentFn;
+        public function setTestName($testName) {
+            $this->testName = $testName;
         }
 
-        public function getStudentFn() {
-            return $this->studentFn;
+        public function getTestName() {
+            return $this->testName;
         }
 
-        public function setMark($mark) {
-            $this->mark = $mark;
+        public function setQuestions($questions) {
+            $this->questions = $questions;
         }
 
-        public function getMark() {
-            return $this->mark;
+        public function getQuestions() {
+            return $this->questions;
         }
 
-        // TODO
-        public function validateMark() {
-
+        public function setAnswers($answers) {
+            $this->answers = $answers;
         }
 
-        public function getAllMarks() {
-            $query = $this->db->selectMarks();
+        public function getAnswers() {
+            return $this->answers;
+        }
 
-            if ($query["success"]) {
-                return $query["data"]->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return $query;
+        public function setCorrectAnswers($correctAnswers) {
+            $this->correctAnswers = $correctAnswers;
+        }
+
+        public function getCorrectAnswers() {
+            return $this->correctAnswers;
+        }
+
+        public function createTest($id, $testName, $questions, $answers, $correctAnswers) {
+            $query = $this->db->insertTestQuery([
+                'id' => $id,
+                'testName' => $testName,
+                'questions' => $questions,
+                'answers' => $answers,
+                'correctAnswers' => $correctAnswers]);
+
+            if ($query['success']) {
+                $this->id = $id;
+                $this->testName = $testName;
+                $this->questions = $questions;
+                $this->answers = $answers;
+                $this->correctAnswers = $correctAnswers;
             }
         }
 
-        public function addMark() {
-            $query = $this->db->insertMark(["fn" => $this->studentFn, "mark" => $this->mark]);
-        }
+        public function selectTestsQuery() {
+            $query = $this->db->selectTestsQuery();
 
-        public function getAllMarksWithStudents() {
-            $query = $this->db->selectStudentsWithMarksQuery();
-
-            if ($query["success"]) {
-                return $query["data"]->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return $query;
+            if (!$query['success']) {
+                return;
             }
+
+            return $query['data'];
         }
     }
 ?>

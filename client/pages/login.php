@@ -20,7 +20,7 @@
 <nav class="navbar">
     <a href="./index.php" class="logo">
       <img src="../../images/logo.png" alt="logo">
-      <p class="logo-text">Exam Browser</p>
+      <p class="logo-text">SEB</p>
     </a>
     <ul>
       <li><a class="links" href="./register.php">Register</a></li>
