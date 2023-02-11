@@ -12,7 +12,7 @@
   <title>Exam Browser</title>
   <link rel="stylesheet" href="../styles/styles.css"/>
   <link rel="stylesheet" href="../styles/nav.css"/>
-  <link rel="stylesheet" href="../styles/create-test.css">
+  <link rel="stylesheet" href="../styles/test.css">
   <script src="../scripts/utilities.js"></script>
   <script src="../scripts/index.js"></script>
   <script type="text/javascript" src="../scripts/testUtilities.js"></script>
@@ -20,6 +20,13 @@
   <script type="text/javascript" src="../scripts/logout.js"></script>
 </head>
 <body onload="loadTest()">
+  <div class="quiz-container">
+    <div id="quiz"></div>
+  </div>
+  <button id="previous">Previous Question</button>
+  <button id="next">Next Question</button>
+  <button id="submit">Submit Quiz</button>
+  <div id="results"></div>
   
 </body>
 </html>

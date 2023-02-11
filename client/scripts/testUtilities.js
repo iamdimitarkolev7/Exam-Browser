@@ -53,7 +53,7 @@ const deserialiseQuestions = (questions, answers, correctAnswers) => {
   for (let i = 0; i < questionsArr.length; ++i) {
     let crrQuestion = {};
     crrQuestion.question = questionsArr[i];
-    crrQuestion.asnwers = answersArr[i].split('|cqa|');
+    crrQuestion.answers = answersArr[i].split('|cqa|');
     crrQuestion.correctAnswer = correctAnswersArr[i];
 
     questionsResult.push(crrQuestion);
