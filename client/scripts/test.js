@@ -6,7 +6,6 @@ const loadTest = () => {
     const deserialisedTest = deserialiseTests(response.testsData)[0];
     const testName = deserialisedTest.testName;
     const questions = deserialisedTest.questions;
-    console.log(questions);
   })
   .catch(err => console.log(err));
 }
