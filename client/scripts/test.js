@@ -1,5 +1,6 @@
 let questionsMaxIndex = 0;
 let currentSlide = 0;
+let correctAnswers = [];
 
 const loadTest = () => {
   const testName = this.location.href.split('=')[1];
@@ -17,9 +18,11 @@ const loadTest = () => {
 }
 
 const createTestHTML = (testName, questions) => {
+  correctAnswers = questions.map(item => item.correctAnswer);
   const output = [];
   const h1 = document.querySelectorAll('h1')[0];
   h1.textContent = testName;
+  let num = 1;
 
   for (const question of questions) {
     const answers = [];
@@ -27,10 +30,12 @@ const createTestHTML = (testName, questions) => {
     for (const answer of question.answers) {
       answers.push(
         `<label>
-          <input type="radio" name="question" value="${answer}">
+          <input type="radio" name="question${num}" value="${answer}">
           ${answer}
         </label>`);
     }
+
+    num++;
 
     output.push(
       `<div class="slide">
@@ -57,6 +62,7 @@ const createTestHTML = (testName, questions) => {
 
   nextButton.addEventListener('click', showNextSlide);
   previousButton.addEventListener('click', showPreviousSlide);
+  submitButton.addEventListener('click', showResults);
 }
 
 const showNextSlide = () => {
@@ -97,37 +103,33 @@ const showSlide = () => {
   }
 }
 
-function showResults(){
-  
-  // gather answer containers from our quiz
+const showResults = () => {
+  const quizContainer = document.getElementsByClassName('quiz-container')[0];
   const answerContainers = quizContainer.querySelectorAll('.answers');
 
   // keep track of user's answers
   let numCorrect = 0;
+  let i = 0;
+  let num = 1;
 
-  // for each question...
-  myQuestions.forEach( (currentQuestion, questionNumber) => {
-
-    // find selected answer
-    const answerContainer = answerContainers[questionNumber];
-    const selector = `input[name=question${questionNumber}]:checked`;
-    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-    // if answer is correct
-    if(userAnswer === currentQuestion.correctAnswer){
-      // add to the number of correct answers
+  for (const answers of answerContainers) {
+    const answerContainer = document.querySelector(`input[name="question${num}"]:checked`);
+    const givenAnswer = answerContainer.value;
+    const correctAnswer = correctAnswers[i];
+    
+    if (givenAnswer === correctAnswer) {
       numCorrect++;
-
-      // color the answers green
-      answerContainers[questionNumber].style.color = 'lightgreen';
+      console.log(answerContainer.parent)
+      answerContainer.parentElement.style.color = 'lightgreen';
+    } else {
+      answerContainer.parentElement.style.color = 'red';
     }
-    // if answer is wrong or blank
-    else{
-      // color the answers red
-      answerContainers[questionNumber].style.color = 'red';
-    }
-  });
 
-  // show number of correct answers out of total
-  resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    num++;
+    i++;
+  }
+
+  const resultsContainer = document.getElementById('results');
+
+  resultsContainer.innerHTML = `${numCorrect} out of ${num - 1}`;
 }
