@@ -8,7 +8,6 @@
   $errors = [];
 
   if ($_POST) {
-    // No need to check for errors because test must be always valid when send from the client
     $id = uniqid();
     $testName = isset($_POST['testName']) ? testInput($_POST['testName']) : '';
     $questions = isset($_POST['questions']) ? testInput($_POST['questions']) : '';
@@ -16,7 +15,12 @@
     $correctAnswers =  isset($_POST['correctAnswers']) ? testInput($_POST['correctAnswers']) : '';
   
     $test = new Test($id, $testName, $questions, $answers, $correctAnswers);
-    $test->createTest($id, $testName, $questions, $answers, $correctAnswers);
+
+    if ($test->testExists()) {
+      $errors[] = 'This test currently exists!';
+    } else {
+      $test->createTest($id, $testName, $questions, $answers, $correctAnswers);
+    }
   } else {
     $errors[] = 'Invalid request!';
   }

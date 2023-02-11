@@ -5,6 +5,7 @@
         private $selectUser;
         private $insertTest;
         private $selectTests;
+        private $selectTestByName;
 
         public function __construct() {
             $config = parse_ini_file('../../config.ini', true);
@@ -42,6 +43,9 @@
 
             $sql = "SELECT * FROM tests";
             $this->selectTests = $this->connection->prepare($sql);
+
+            $sql = "SELECT * FROM tests WHERE testName = :testName";
+            $this->selectTestByName = $this->connection->prepare($sql);
         }
 
         public function selectUserQuery($data) {
@@ -58,6 +62,15 @@
             try {
                 $this->selectTests->execute();
                 return ["success" => true, "data" => $this->selectTests->fetchAll(PDO::FETCH_ASSOC)];
+            } catch (PDOException $e) {
+                return ["success" => false, "error" => $e->getMessage()];
+            }
+        }
+
+        public function selectTestByName($testName) {
+            try {
+                $this->selectTestByName->execute($testName);
+                return ["success" => true, "data" => $this->selectTestByName->fetchAll(PDO::FETCH_ASSOC)];
             } catch (PDOException $e) {
                 return ["success" => false, "error" => $e->getMessage()];
             }

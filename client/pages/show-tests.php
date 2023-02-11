@@ -12,7 +12,7 @@
   <title>Exam Browser</title>
   <link rel="stylesheet" href="../styles/styles.css"/>
   <link rel="stylesheet" href="../styles/nav.css"/>
-  <link rel="stylesheet" href="../styles/create-test.css">
+  <link rel="stylesheet" href="../styles/show-tests.css">
   <script src="../scripts/utilities.js"></script>
   <script src="../scripts/index.js"></script>
   <script type="text/javascript" src="../scripts/testUtilities.js"></script>
@@ -32,7 +32,17 @@
     </ul>
   </nav>
   <div id="tests-section">
-
+    <table id="tests-table">
+      <thead>
+        <tr class="table-heading-row">
+          <th class="table-heading">№</th>
+          <th class="table-heading">Test Name</th>
+          <th class="table-heading">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
   </div>
 </body>
 </html>

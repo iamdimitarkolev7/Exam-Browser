@@ -77,11 +77,36 @@
             }
         }
 
+        public function testExists() {
+            $selectTest = $this->db->selectTestByName(['testName' => $this->testName]);
+
+            if ($selectTest['success']) {
+                if (!$selectTest['data']) {
+                    return false;
+                }
+                $testData = $selectTest['data'][0];
+
+                if ($testData) {
+                    $this->id = $testData['id'];
+                    $this->testName = $testData['testName'];
+                    $this->questions = $testData['questions'];
+                    $this->answers = $testData['answers'];
+                    $this->correctAnswers = $testData['correctAnswers'];
+
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
         public function selectTestsQuery() {
             $query = $this->db->selectTestsQuery();
 
             if (!$query['success']) {
-                return;
+                return '';
             }
 
             return $query['data'];

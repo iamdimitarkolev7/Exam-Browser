@@ -1,0 +1,13 @@
+#tests-table {
+  margin: auto;
+  width: 50%;
+  border: 1px solid ghostwhite;
+}
+
+#tests-table thead {
+  text-align: center;
+}
+
+#tests-table tbody {
+  text-align: center;
+}

@@ -43,6 +43,7 @@ const uploadTest = (test) => {
     console.log(response);
   })
   .catch(err => {
+    // Err when test exists
     console.log(err);
   });
 }
