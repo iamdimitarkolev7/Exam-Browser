@@ -1,3 +1,6 @@
+let questionsMaxIndex = 0;
+let currentSlide = 0;
+
 const loadTest = () => {
   const testName = this.location.href.split('=')[1];
 
@@ -6,6 +9,7 @@ const loadTest = () => {
     const deserialisedTest = deserialiseTests(response.testsData)[0];
     const testName = deserialisedTest.testName;
     const questions = deserialisedTest.questions;
+    questionsMaxIndex = questions.length - 1;
 
     createTestHTML(testName, questions);
   })
@@ -41,46 +45,57 @@ const createTestHTML = (testName, questions) => {
     
   quizContainer.innerHTML = output.join('');
 
-  const questionsMaxIndex = questions.length - 1;
-
-  showSlide(questionsMaxIndex, 0);
-}
-
-
-const showNextSlide = (numOfSlides, currentSlide) => {
-  showSlide(numOfSlides, currentSlide + 1);
-}
-
-const showPreviousSlide = (numOfSlides, currentSlide) => {
-  showSlide(numOfSlides, currentSlide - 1);
-}
-
-const showSlide = (numOfSlides, currentSlide) => {
   const previousButton = document.getElementById("previous");
   const nextButton = document.getElementById("next");
   const submitButton = document.getElementById("submit");
+  
   const slides = document.querySelectorAll(".slide");
+  slides[0].classList.add('active-slide');
 
+  nextButton.style.display = 'inline-block';
+  previousButton.style.display = 'none';
+  submitButton.style.display = 'none';
+
+  nextButton.addEventListener('click', showNextSlide);
+  previousButton.addEventListener('click', showPreviousSlide);
+}
+
+const showNextSlide = () => {
+  const slides = document.querySelectorAll(".slide");
+  slides[currentSlide + 1].classList.add('active-slide');
   slides[currentSlide].classList.remove('active-slide');
-  slides[numOfSlides].classList.add('active-slide');
-  currentSlide = numOfSlides;
-  if(currentSlide === 0){
+
+  currentSlide++;
+  showSlide();
+}
+
+const showPreviousSlide = () => {
+  const slides = document.querySelectorAll(".slide");
+  slides[currentSlide - 1].classList.add('active-slide');
+  slides[currentSlide].classList.remove('active-slide');
+  
+  currentSlide--;
+  showSlide();
+}
+
+const showSlide = () => {
+  const previousButton = document.getElementById("previous");
+  const nextButton = document.getElementById("next");
+  const submitButton = document.getElementById("submit");
+
+  if (currentSlide === 0) {
     previousButton.style.display = 'none';
-  }
-  else{
+  } else{
     previousButton.style.display = 'inline-block';
   }
-  if(currentSlide === slides.length-1){
+
+  if (currentSlide === questionsMaxIndex) {
     nextButton.style.display = 'none';
     submitButton.style.display = 'inline-block';
-  }
-  else{
+  } else {
     nextButton.style.display = 'inline-block';
     submitButton.style.display = 'none';
   }
-  submitButton.addEventListener('click', showResults);
-  previousButton.addEventListener("click", showPreviousSlide(numOfSlides, currentSlide));
-  nextButton.addEventListener("click", showNextSlide(numOfSlides, currentSlide));
 }
 
 function showResults(){
