@@ -20,13 +20,15 @@
   <script type="text/javascript" src="../scripts/logout.js"></script>
 </head>
 <body onload="loadTest()">
+  <h1></h1>
   <div class="quiz-container">
     <div id="quiz"></div>
+    <div id="button-section">
+      <button id="previous">Previous Question</button>
+      <button id="next">Next Question</button>
+      <button id="submit">Submit Quiz</button>
+    </div>
   </div>
-  <button id="previous">Previous Question</button>
-  <button id="next">Next Question</button>
-  <button id="submit">Submit Quiz</button>
   <div id="results"></div>
-  
 </body>
 </html>
