@@ -18,19 +18,18 @@ const loadTest = () => {
 
 const createTestHTML = (testName, questions) => {
   const output = [];
+  const h1 = document.querySelectorAll('h1')[0];
+  h1.textContent = testName;
 
   for (const question of questions) {
     const answers = [];
-    let questionNum = 1;
 
     for (const answer of question.answers) {
       answers.push(
         `<label>
-          <input type="radio" name="question${questionNum}" value="${answer}">
+          <input type="radio" name="question" value="${answer}">
           ${answer}
         </label>`);
-
-      questionNum++;
     }
 
     output.push(

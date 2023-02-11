@@ -1,53 +1,72 @@
-h1{
+body {
+	font-size: 20px;
   font-weight: 300;
-  margin: 0px;
-  padding: 10px;
-  font-size: 20px;
-  background-color: #444;
-  color: #fff;
+  text-align: center;
 }
-.question{
+
+h1 {
+  font-weight: 300;
+  width: 40%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: rgba(233, 234, 234, 0.8);
+  border-radius: 10px;
+  color: green;
+}
+
+.question {
   font-size: 30px;
   margin-bottom: 10px;
 }
+
 .answers {
   margin-bottom: 20px;
   text-align: left;
   display: inline-block;
 }
-.answers label{
+
+.answers label {
   display: block;
   margin-bottom: 10px;
 }
-button{
+
+button {
 	font-size: 22px;
-	background-color: #279;
+	background-color: green;
 	color: #fff;
 	border: 0px;
 	border-radius: 3px;
 	padding: 20px;
 	cursor: pointer;
-	margin-bottom: 20px;
+  margin-top: 20px;
 }
-button:hover{
+
+button:hover {
 	background-color: #38a;
 }
 
-.slide{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
-  .active-slide{
-    opacity: 1;
-    z-index: 2;
-  }
-  .quiz-container{
-    position: relative;
-    height: 200px;
-    margin-top: 40px;
-  }
+.slide {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.active-slide {
+  opacity: 1;
+  z-index: 2;
+}
+
+.quiz-container {
+  position: relative;
+  height: 200px;
+  padding-top: 40px;
+}
+
+#quiz {
+  position: relative;
+  height: inherit;
+}
