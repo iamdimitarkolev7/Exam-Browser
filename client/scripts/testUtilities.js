@@ -19,6 +19,13 @@ const serialiseAnswers = (test) => {
   return allAnswers.join('|na|'); // |na| is the delimiter for all of the answers
 }
 
+const serialiseGrades = (test, grade) => {
+  let resultString = `${test} - ${grade}|ng|`; // |ng| is the delimeter for all grades
+
+  return resultString;
+}
+
+
 const serialiseCorrectAnswers = (test) => {
   let allCorrectAnswers = [];
 
@@ -61,3 +68,11 @@ const deserialiseQuestions = (questions, answers, correctAnswers) => {
 
   return questionsResult;
 }
+
+const deserialisedGrades = () => {
+  let gradesResult = [];
+
+  return gradesResult;
+}
+
+// |Random-6|

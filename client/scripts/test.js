@@ -1,14 +1,15 @@
 let questionsMaxIndex = 0;
 let currentSlide = 0;
 let correctAnswers = [];
+let testName = '';
 
 const loadTest = () => {
-  const testName = this.location.href.split('=')[1];
+  testName = this.location.href.split('=')[1];
 
   getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php', testName)
   .then(response => {
     const deserialisedTest = deserialiseTests(response.testsData)[0];
-    const testName = deserialisedTest.testName;
+    testName = deserialisedTest.testName;
     const questions = deserialisedTest.questions;
     questionsMaxIndex = questions.length - 1;
 
@@ -135,9 +136,7 @@ const showResults = () => {
   }
 
   const percantige = (numCorrect/(num - 1))*100;
-
   const resultsContainer = document.getElementById('results');
-
   const gradeContainder = document.getElementById('grade');
 
   resultsContainer.innerHTML = `${numCorrect} out of ${num - 1}`;
@@ -147,6 +146,21 @@ const showResults = () => {
   gradeContainder.innerHTML = `Your grade is: ${grade}`;
 
   homeButton.style.display = 'inline-block';
+
+  updateGrade(testName, grade);  
+}
+
+const updateGrade = (testGrade) => {
+  let resultGrade = serialiseGrades(testName, testGrade);
+  sendData('http://localhost:80/exam-browser-api/server/controllers/update-grade.php', resultGrade)
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    // Err when test exists
+    console.log(err);
+  });
+
 }
 
 const showHomePage = () => {
@@ -158,17 +172,13 @@ const calculateGrade = (percantige) => {
 
   if (percantige <= 20) {
     calculatedGrade = 2;
-  }
-  else if (percantige > 20 && percantige < 40) {
+  } else if (percantige > 20 && percantige < 40) {
     calculatedGrade = 3;
-  }
-  else if (percantige >= 40 && percantige < 60) {
+  } else if (percantige >= 40 && percantige < 60) {
     calculatedGrade = 4;
-  }
-  else if (percantige >= 60 && percantige < 80) {
+  } else if (percantige >= 60 && percantige < 80) {
     calculatedGrade = 5;
-  }
-  else {
+  } else {
     calculatedGrade = 6;
   }
 
