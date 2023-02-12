@@ -63,13 +63,22 @@ const deserialiseQuestions = (questions, answers, correctAnswers) => {
 }
 
 const serialiseGrades = (test, grade) => {
-  let resultString = `${test}-${grade}|ng|`; // |ng| is the delimeter for all grades
+  const resultString = `${test}-${grade}|ng|`; // |ng| is the delimeter for all grades
 
   return resultString;
 }
 
-const deserialisedGrades = () => {
-  let gradesResult = [];
+const deserialisedGrades = (resultGrade) => {
+  const gradesResult = resultGrade.split('|ng|').filter(e => e !== '');
+  let finalResult = [];
 
-  return gradesResult;
+  for (const data of gradesResult) {
+    const splittedData = data.split('-').filter(e => e !== '');  
+    const testName = splittedData[0];
+    const testGrade = splittedData[1];
+
+    finalResult.push({testName, testGrade});
+  }
+
+  return finalResult;
 }

@@ -6,7 +6,7 @@ let testName = '';
 const loadTest = () => {
   testName = this.location.href.split('=')[1];
 
-  getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php', testName)
+  getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php?testName=' + testName)
   .then(response => {
     const deserialisedTest = deserialiseTests(response.testsData)[0];
     testName = deserialisedTest.testName;

@@ -1,20 +1,40 @@
 const loadAllTests = () => {
   getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php')
   .then(response => {
+    console.log();
+
+    const performedTests = deserialisedGrades(response.resultGrade);
     const deserialisedTests = deserialiseTests(response.testsData);
-    createTestSections(deserialisedTests);
+    const performedTestNames = [];
+
+    let i = 0;
+
+    for (const curr in performedTests) {
+      performedTestNames.push(performedTests[i].testName);
+      i++;
+    }
+
+    createTestSections(performedTestNames, deserialisedTests);
   })
   .catch(err => {
     console.log(err);
   });
 }
 
-const createTestSections = (deserialisedTests) => {
+const createTestSections = (performedTestNames, deserialisedTests) => {
   const table = document.getElementById('tests-table').getElementsByTagName('tbody')[0];
   let number = 0;
+  let i = 0;
 
   for (const test of deserialisedTests) {
-    const tr = `
+    const bt = `
+      <tr class="table-body-row">
+        <td class="table-data">${number}</td>
+        <td class="table-data">${test.testName}</td>
+        <td class="table-data">Performed test</td>
+      </tr>`
+    
+      const tr = `
       <tr class="table-body-row">
         <td class="table-data">${number}</td>
         <td class="table-data">${test.testName}</td>
@@ -23,9 +43,12 @@ const createTestSections = (deserialisedTests) => {
         </td>
       </tr>`
 
-      number++;
-
-      table.insertRow().innerHTML = tr;
+      if (performedTestNames.includes(test.testName)) {
+        table.insertRow().innerHTML = bt;
+      } else {
+        table.insertRow().innerHTML = tr;
+        number++;
+      } 
   }
 
   for (let i = 0; i < number; i++) {

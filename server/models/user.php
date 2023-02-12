@@ -62,6 +62,7 @@
                     $this->password = $userData['password'];
                     $this->id = $userData['id'];
                     $this->role = $userData['role'];
+                    $this->resultGrade = $userData['resultGrade'];
 
                     return true;
                 } else {

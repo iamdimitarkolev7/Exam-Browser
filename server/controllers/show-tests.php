@@ -1,6 +1,7 @@
 <?php
   require_once '../models/test.php';
   require_once '../utils/testInputUtility.php';
+  require_once '../models/user.php';
 
   session_start();
   header('Content-type: application/x-www-form-urlencoded');
@@ -9,6 +10,16 @@
 
   $testName = isset($_GET['testName']) ? testInput($_GET['testName']) : '';
   $test = new Test('', $testName, '', '', '');
+
+  $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+  $user = new User($username, '', '', '', '', '');
+
+  $resultGrade = '';
+
+  if ($user->exists()) {
+    $resultGrade = $user->getResultGrade();
+  }
+
 
   if (isset($_GET['testName'])) {
     $testExists = $test->testExists();
@@ -38,6 +49,7 @@
     echo json_encode([
       'success' => true,
       'message' => 'Request is successful',
-      'testsData' => $testsData]);
+      'testsData' => $testsData,
+      'resultGrade' => $resultGrade]);
   }
 ?>
