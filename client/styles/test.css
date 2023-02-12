@@ -70,3 +70,11 @@ button:hover {
   position: relative;
   height: inherit;
 }
+
+#results {
+    margin-top: 170px;
+}
+
+#grade {
+    margin-top: 20px;
+}

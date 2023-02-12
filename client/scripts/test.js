@@ -134,9 +134,17 @@ const showResults = () => {
     i++;
   }
 
+  const percantige = (numCorrect/(num - 1))*100;
+
   const resultsContainer = document.getElementById('results');
 
+  const gradeContainder = document.getElementById('grade');
+
   resultsContainer.innerHTML = `${numCorrect} out of ${num - 1}`;
+
+  let grade = calculateGrade(percantige);
+
+  gradeContainder.innerHTML = `Your grade is: ${grade}`;
 
   homeButton.style.display = 'inline-block';
 }
@@ -145,3 +153,24 @@ const showHomePage = () => {
   location.href = './index.php';
 }
 
+const calculateGrade = (percantige) => {
+  let calculatedGrade = 0;
+
+  if (percantige <= 20) {
+    calculatedGrade = 2;
+  }
+  else if (percantige > 20 && percantige < 40) {
+    calculatedGrade = 3;
+  }
+  else if (percantige >= 40 && percantige < 60) {
+    calculatedGrade = 4;
+  }
+  else if (percantige >= 60 && percantige < 80) {
+    calculatedGrade = 5;
+  }
+  else {
+    calculatedGrade = 6;
+  }
+
+  return calculatedGrade;
+}
