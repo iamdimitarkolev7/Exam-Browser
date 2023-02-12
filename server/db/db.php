@@ -48,8 +48,8 @@
             $sql = "SELECT * FROM tests WHERE testName = :testName";
             $this->selectTestByName = $this->connection->prepare($sql);
 
-            $sql = "UPDATE users SET testGrade = :testGrade WHERE id = :id";
-            $this->updateUserGradeQuery = $this->connection->prepare($sql);
+            $sql = "UPDATE users SET resultGrade = CONCAT(resultGrade, :resultGrade) WHERE username = :username";
+            $this->updateUserGrade = $this->connection->prepare($sql);
         }
 
         public function selectUserQuery($data) {
@@ -102,8 +102,8 @@
 
         public function updateUserGradeQuery($data) {
             try {
-                $this->updateUserGradeQuery->execute($data);
-                return ["success" => true, "data" => $this->updateUserGradeQuery->fetchAll(PDO::FETCH_ASSOC)];
+                $this->updateUserGrade->execute($data);
+                return ["success" => true, "data" => $this->updateUserGrade->fetchAll(PDO::FETCH_ASSOC)];
             } catch (PDOException $e) {
                 return ["success" => false, "error" => $e->getMessage()];
             }

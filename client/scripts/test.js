@@ -125,7 +125,6 @@ const showResults = () => {
     
     if (givenAnswer === correctAnswer) {
       numCorrect++;
-      console.log(answerContainer.parent)
       answerContainer.parentElement.style.color = 'lightgreen';
     } else {
       answerContainer.parentElement.style.color = 'red';
@@ -147,12 +146,13 @@ const showResults = () => {
 
   homeButton.style.display = 'inline-block';
 
-  updateGrade(testName, grade);  
+  updateGrade(grade);
 }
 
 const updateGrade = (testGrade) => {
   let resultGrade = serialiseGrades(testName, testGrade);
-  sendData('http://localhost:80/exam-browser-api/server/controllers/update-grade.php', resultGrade)
+
+  sendData('http://localhost:80/exam-browser-api/server/controllers/update-grade.php', {resultGrade})
   .then(response => {
     console.log(response);
   })
@@ -167,16 +167,16 @@ const showHomePage = () => {
   location.href = './index.php';
 }
 
-const calculateGrade = (percantige) => {
+const calculateGrade = (percentige) => {
   let calculatedGrade = 0;
 
-  if (percantige <= 20) {
+  if (percentige <= 20) {
     calculatedGrade = 2;
-  } else if (percantige > 20 && percantige < 40) {
+  } else if (percentige > 20 && percentige < 40) {
     calculatedGrade = 3;
-  } else if (percantige >= 40 && percantige < 60) {
+  } else if (percentige >= 40 && percentige < 60) {
     calculatedGrade = 4;
-  } else if (percantige >= 60 && percantige < 80) {
+  } else if (percentige >= 60 && percentige < 80) {
     calculatedGrade = 5;
   } else {
     calculatedGrade = 6;

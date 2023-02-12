@@ -8,6 +8,7 @@
         private $username;
         private $password;
         private $role;
+        private $resultGrade;
 
         private $db;
 
@@ -18,6 +19,7 @@
             $this->username = $username;
             $this->password = $password;
             $this->role = $role;
+            $this->resultGrade = '';
 
             $this->db = new Database();
         }
@@ -44,6 +46,10 @@
 
         public function getRole() {
             return $this->role;
+        }
+
+        public function getResultGrade() {
+            return $this->resultGrade;
         }
 
         public function exists() {
@@ -98,6 +104,17 @@
                 $this->username = $username;
                 $this->password = $passwordHash;
                 $this->role = $role;
+            }
+        }
+
+        public function updateGrades($resultGrade, $username) {
+            $query = $this->db->updateUserGradeQuery([
+                'resultGrade' => $resultGrade,
+                'username' => $username
+            ]);
+
+            if ($query['success']) {
+                $this->resultGrade = $resultGrade;
             }
         }
     }

@@ -22,8 +22,7 @@ const sendHttpRequest = (method, url, data) => {
     };
 
     if (data) {
-      console.log(data);
-      console.log(Object.entries(data).map(([k,v])=>{return k+'='+v}).join('&'));
+      console.log(data)
       xhr.send(Object.entries(data).map(([k,v])=>{return k+'='+v}).join('&'));
     } else {
       xhr.send();
