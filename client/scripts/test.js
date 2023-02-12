@@ -52,6 +52,7 @@ const createTestHTML = (testName, questions) => {
   const previousButton = document.getElementById("previous");
   const nextButton = document.getElementById("next");
   const submitButton = document.getElementById("submit");
+  const homeButton = document.getElementById("home");
   
   const slides = document.querySelectorAll(".slide");
   slides[0].classList.add('active-slide');
@@ -59,10 +60,12 @@ const createTestHTML = (testName, questions) => {
   nextButton.style.display = 'inline-block';
   previousButton.style.display = 'none';
   submitButton.style.display = 'none';
+  homeButton.style.display = 'none';
 
   nextButton.addEventListener('click', showNextSlide);
   previousButton.addEventListener('click', showPreviousSlide);
   submitButton.addEventListener('click', showResults);
+  homeButton.addEventListener('click', showHomePage);
 }
 
 const showNextSlide = () => {
@@ -101,11 +104,13 @@ const showSlide = () => {
     nextButton.style.display = 'inline-block';
     submitButton.style.display = 'none';
   }
+
 }
 
 const showResults = () => {
   const quizContainer = document.getElementsByClassName('quiz-container')[0];
   const answerContainers = quizContainer.querySelectorAll('.answers');
+  const homeButton = document.getElementById("home");
 
   // keep track of user's answers
   let numCorrect = 0;
@@ -132,4 +137,11 @@ const showResults = () => {
   const resultsContainer = document.getElementById('results');
 
   resultsContainer.innerHTML = `${numCorrect} out of ${num - 1}`;
+
+  homeButton.style.display = 'inline-block';
 }
+
+const showHomePage = () => {
+  location.href = './index.php';
+}
+

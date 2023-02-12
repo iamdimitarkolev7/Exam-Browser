@@ -27,6 +27,7 @@
       <button id="previous">Previous Question</button>
       <button id="next">Next Question</button>
       <button id="submit">Submit Quiz</button>
+      <button id="home">Back to Home</button>
     </div>
   </div>
   <div id="results"></div>
