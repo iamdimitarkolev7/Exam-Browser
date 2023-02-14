@@ -9,6 +9,7 @@
         private $password;
         private $role;
         private $resultGrade;
+        private $createdTests;
 
         private $db;
 
@@ -20,6 +21,7 @@
             $this->password = $password;
             $this->role = $role;
             $this->resultGrade = '';
+            $this->createdTests = '';
 
             $this->db = new Database();
         }
@@ -52,6 +54,10 @@
             return $this->resultGrade;
         }
 
+        public function getCreatedTests() {
+            return $this->createdTests;
+        }
+
         public function exists() {
             $selectUser = $this->db->selectUserQuery(['username' => $this->username]);
 
@@ -63,6 +69,7 @@
                     $this->id = $userData['id'];
                     $this->role = $userData['role'];
                     $this->resultGrade = $userData['resultGrade'];
+                    $this->createdTests = $userData['createdTests'];
 
                     return true;
                 } else {
@@ -116,6 +123,17 @@
 
             if ($query['success']) {
                 $this->resultGrade = $resultGrade;
+            }
+        }
+
+        public function updateCreateTest($createdTests, $username) {
+            $query = $this->db->updateCreatedTests([
+                'createdTests' => $createdTests,
+                'username' => $username
+            ]);
+
+            if ($query['success']) {
+                $this->createdTests = $createdTests;
             }
         }
     }

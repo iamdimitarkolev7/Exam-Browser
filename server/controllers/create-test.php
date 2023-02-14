@@ -13,13 +13,19 @@
     $questions = isset($_POST['questions']) ? testInput($_POST['questions']) : '';
     $answers = isset($_POST['answers']) ? testInput($_POST['answers']) : '';
     $correctAnswers =  isset($_POST['correctAnswers']) ? testInput($_POST['correctAnswers']) : '';
+    $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
   
     $test = new Test($id, $testName, $questions, $answers, $correctAnswers);
+    $user = new User($username, '', '', '', '', '');
 
     if ($test->testExists()) {
       $errors[] = 'This test currently exists!';
     } else {
       $test->createTest($id, $testName, $questions, $answers, $correctAnswers);
+      if ($user->exists()) {
+        $user->updateCreateTest($createdTests, $username);
+      }
+
     }
   } else {
     $errors[] = 'Invalid request!';

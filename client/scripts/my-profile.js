@@ -12,6 +12,8 @@ function loadSessionMyProfile() {
 
   getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php')
   .then(response => {
+
+    console.log(response);
     const performedTestsArr = deserialisedGrades(response.resultGrade);
     let number = 0;
     for (const test of performedTestsArr) {
@@ -25,8 +27,6 @@ function loadSessionMyProfile() {
       number++;
       performedTestsTable.insertRow().innerHTML = st;
     }
-
-
     
   })
   .catch(err => {

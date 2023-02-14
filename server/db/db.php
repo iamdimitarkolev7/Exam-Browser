@@ -7,6 +7,7 @@
         private $selectTests;
         private $selectTestByName;
         private $updateUserGrade;
+        private $updateCreatedTests;
 
         public function __construct() {
             $config = parse_ini_file('../../config.ini', true);
@@ -50,6 +51,9 @@
 
             $sql = "UPDATE users SET resultGrade = CONCAT(resultGrade, :resultGrade) WHERE username = :username";
             $this->updateUserGrade = $this->connection->prepare($sql);
+
+            $sql = "UPDATE users SET createdTests = CONCAT(createdTests, :createdTests) WHERE username = :username";
+            $this->updateCreatedTests = $this->connection->prepare($sql);
         }
 
         public function selectUserQuery($data) {
@@ -104,6 +108,15 @@
             try {
                 $this->updateUserGrade->execute($data);
                 return ["success" => true, "data" => $this->updateUserGrade->fetchAll(PDO::FETCH_ASSOC)];
+            } catch (PDOException $e) {
+                return ["success" => false, "error" => $e->getMessage()];
+            }
+        }
+
+        public function updateCreatedTests($data) {
+            try {
+                $this->updateCreatedTests->execute($data);
+                return ["success" => true, "data" => $this->updateCreatedTests->fetchAll(PDO::FETCH_ASSOC)];
             } catch (PDOException $e) {
                 return ["success" => false, "error" => $e->getMessage()];
             }
