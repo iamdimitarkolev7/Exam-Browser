@@ -2,6 +2,7 @@
     margin: auto;
     width: 50%;
     border: 1px solid ghostwhite;
+    text-align: center;
 }
 
 #tests-table thead {
