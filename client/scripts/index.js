@@ -23,17 +23,20 @@ function setAuthorizedUserNavButtons(role) {
   document.cookie = `role=${+role}`;
 
   if (role == 1) {
-    showTestsBtn.style.display = 'block';
+    showTestsBtn.style.display = 'inline-block';
+    showTestsBtn.parentElement.style.margin = 0;
     createTestBtn.style.display = 'none';
   } else if (role == 2) {
     showTestsBtn.style.display = 'none';
-    createTestBtn.style.display = 'block';
+    createTestBtn.style.display = 'inline-block';
   }
 
   signInBtn.style.display = 'none';
   signUpBtn.style.display = 'none';
-  myProfileBtn.style.display = 'block';
-  logoutBtn.style.display = 'block';
+  signInBtn.parentElement.style.margin = 0;
+  signUpBtn.parentElement.style.margin = 0;
+  myProfileBtn.style.display = 'inline-block';
+  logoutBtn.style.display = 'inline-block';
 }
 
 function setUnathorizedUserButtons() {
@@ -44,8 +47,8 @@ function setUnathorizedUserButtons() {
   let myProfileBtn = document.getElementById('my-profile-btn');
   let logoutBtn = document.getElementById('logout-btn');
 
-  signInBtn.style.display = 'block';
-  signUpBtn.style.display = 'block';
+  signInBtn.style.display = 'inline-block';
+  signUpBtn.style.display = 'inline-block';
   showTestsBtn.style.display = 'none';
   createTestBtn.style.display = 'none';
   myProfileBtn.style.display = 'none';

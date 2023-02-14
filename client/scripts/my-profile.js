@@ -14,14 +14,17 @@ function loadSessionMyProfile() {
   if (localStorage.getItem('userRole') == 1) {
     createdTests.style.display = 'none';
     createdTitle.style.display = 'none';
-    allTitle.style.display = 'none';
+    allTitle.style.display = 'none';  
     allTests.style.display = 'none';
     btnCreateTest.style.display = 'none';
+    btnShowTest.parentElement.style.margin = 0;
+
     
   } else {
     performedTests.style.display = 'none';
     performedTitle.style.display = 'none';
     btnShowTest.style.display = 'none';
+    btnShowTest.style.margin = 0;
   }
 
 }
