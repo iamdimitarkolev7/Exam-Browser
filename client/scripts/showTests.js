@@ -7,11 +7,8 @@ const loadAllTests = () => {
     const deserialisedTests = deserialiseTests(response.testsData);
     const performedTestNames = [];
 
-    let i = 0;
-
-    for (const curr in performedTests) {
-      performedTestNames.push(performedTests[i].testName);
-      i++;
+    for (const curr of performedTests) {
+      performedTestNames.push(curr.testName);
     }
 
     createTestSections(performedTestNames, deserialisedTests);
@@ -24,7 +21,7 @@ const loadAllTests = () => {
 const createTestSections = (performedTestNames, deserialisedTests) => {
   const table = document.getElementById('tests-table').getElementsByTagName('tbody')[0];
   let number = 0;
-  let i = 0;
+  let btnNum = 0;
 
   for (const test of deserialisedTests) {
     const bt = `
@@ -39,7 +36,7 @@ const createTestSections = (performedTestNames, deserialisedTests) => {
         <td class="table-data">${number}</td>
         <td class="table-data">${test.testName}</td>
         <td class="table-data">
-          <button id="do-test-btn${number}">Do this test</button>
+          <button id="do-test-btn${btnNum}">Do this test</button>
         </td>
       </tr>`
 
@@ -47,11 +44,13 @@ const createTestSections = (performedTestNames, deserialisedTests) => {
         table.insertRow().innerHTML = bt;
       } else {
         table.insertRow().innerHTML = tr;
-        number++;
-      } 
+        btnNum++;
+      }
+      
+      number++;
   }
 
-  for (let i = 0; i < number; i++) {
+  for (let i = 0; i < btnNum; i++) {
     const btn = document.getElementById(`do-test-btn${i}`);
 
     btn.onclick = (e) => {
