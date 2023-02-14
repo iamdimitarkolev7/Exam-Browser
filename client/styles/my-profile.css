@@ -1,0 +1,17 @@
+#created-tests-table, #performed-tests-table, #all-students-tests {
+    margin: auto;
+    width: 50%;
+    border: 1px solid ghostwhite;
+}
+
+#tests-table thead {
+text-align: center;
+}
+
+#tests-table tbody {
+text-align: center;
+}
+
+.created-tests-title, .performed-tests-title, .all-tests-title {
+text-align: center;
+}

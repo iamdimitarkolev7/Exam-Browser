@@ -4,6 +4,7 @@ const logout = (e) => {
   getData('http://localhost:80/exam-browser-api/server/controllers/logout.php')
   .then(response => {
     console.log(response);
+    localStorage.clear();
     location.href = './index.php';
   })
   .catch(err => {

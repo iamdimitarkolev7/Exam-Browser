@@ -1,7 +1,9 @@
 function loadSession() {
   getData('http://localhost:80/exam-browser-api/server/controllers/index.php')
   .then(response => {
-    setAuthorizedUserNavButtons(+response.role); // converts string to int
+    window.localStorage.setItem('username', response.user);
+    window.localStorage.setItem('userRole', response.role);
+    setAuthorizedUserNavButtons(+response.role);
   })
   .catch(err => {
     if (err) {
@@ -17,6 +19,8 @@ function setAuthorizedUserNavButtons(role) {
   let createTestBtn = document.getElementById('create-test-btn');
   let myProfileBtn = document.getElementById('my-profile-btn');
   let logoutBtn = document.getElementById('logout-btn');
+
+  document.cookie = `role=${+role}`;
 
   if (role == 1) {
     showTestsBtn.style.display = 'block';

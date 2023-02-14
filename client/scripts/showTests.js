@@ -1,7 +1,7 @@
 const loadAllTests = () => {
   getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php')
   .then(response => {
-    console.log();
+    console.log(localStorage);
 
     const performedTests = deserialisedGrades(response.resultGrade);
     const deserialisedTests = deserialiseTests(response.testsData);

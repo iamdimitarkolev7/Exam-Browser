@@ -27,7 +27,7 @@
     </a>
     <ul>
       <li><a class="links" id="create-test-btn" href="./show-tests.php">Show Test</a></li>
-      <li><a class="links" id="my-profile-btn" href="./register.php">My Profile</a></li>
+      <li><a class="links" id="my-profile-btn" href="./my-profile.php">My Profile</a></li>
       <li><a class="links" id="logout-btn" onclick="logout(event)">Logout</a></li>
     </ul>
   </nav>
