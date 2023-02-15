@@ -20,7 +20,6 @@
     $resultGrade = $user->getResultGrade();
   }
 
-
   if (isset($_GET['testName'])) {
     $testExists = $test->testExists();
 
@@ -50,6 +49,7 @@
       'success' => true,
       'message' => 'Request is successful',
       'testsData' => $testsData,
-      'resultGrade' => $resultGrade]);
+      'resultGrade' => $resultGrade,
+      'createdTests' => $user->getCreatedTests()]);
   }
 ?>

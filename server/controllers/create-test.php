@@ -1,4 +1,5 @@
 <?php
+  require_once '../models/user.php';
   require_once '../models/test.php';
   require_once '../utils/testInputUtility.php';
 
@@ -23,9 +24,9 @@
     } else {
       $test->createTest($id, $testName, $questions, $answers, $correctAnswers);
       if ($user->exists()) {
-        $user->updateCreateTest($createdTests, $username);
+        $testName .= '|';
+        $user->updateCreateTest($testName, $username);
       }
-
     }
   } else {
     $errors[] = 'Invalid request!';

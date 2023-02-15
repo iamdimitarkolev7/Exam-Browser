@@ -111,5 +111,11 @@
 
             return $query['data'];
         }
+
+        public function deleteTestByName() {
+            $deletedTest = $this->db->deleteTestByName(['testName' => $this->testName]);
+
+            return $deletedTest['success'];
+        }
     }
 ?>

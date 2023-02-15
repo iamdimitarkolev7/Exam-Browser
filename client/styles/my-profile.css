@@ -6,13 +6,13 @@
 }
 
 #tests-table thead {
-text-align: center;
+    text-align: center;
 }
 
 #tests-table tbody {
-text-align: center;
+    text-align: center;
 }
 
 .created-tests-title, .performed-tests-title, .all-tests-title {
-text-align: center;
+    text-align: center;
 }

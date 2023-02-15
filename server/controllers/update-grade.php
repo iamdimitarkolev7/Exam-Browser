@@ -32,5 +32,5 @@
         'success' => true,
         'message' => 'Grades updated successfully'
       ]);
-}
+  }
 ?>

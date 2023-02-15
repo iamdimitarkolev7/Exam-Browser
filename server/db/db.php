@@ -8,6 +8,8 @@
         private $selectTestByName;
         private $updateUserGrade;
         private $updateCreatedTests;
+        private $deleteTestByName;
+        private $deleteCreatedTest;
 
         public function __construct() {
             $config = parse_ini_file('../../config.ini', true);
@@ -54,6 +56,12 @@
 
             $sql = "UPDATE users SET createdTests = CONCAT(createdTests, :createdTests) WHERE username = :username";
             $this->updateCreatedTests = $this->connection->prepare($sql);
+
+            $sql = "DELETE FROM tests WHERE testName = :testName";
+            $this->deleteTestByName = $this->connection->prepare($sql);
+
+            $sql = "UPDATE users SET createdTests = :createdTests WHERE username = :username";
+            $this->deleteCreatedTest = $this->connection->prepare($sql);
         }
 
         public function selectUserQuery($data) {
@@ -117,6 +125,24 @@
             try {
                 $this->updateCreatedTests->execute($data);
                 return ["success" => true, "data" => $this->updateCreatedTests->fetchAll(PDO::FETCH_ASSOC)];
+            } catch (PDOException $e) {
+                return ["success" => false, "error" => $e->getMessage()];
+            }
+        }
+
+        public function deleteTestByName($data) {
+            try {
+                $this->deleteTestByName->execute($data);
+                return ["success" => true, "data" => $this->deleteTestByName->fetchAll(PDO::FETCH_ASSOC)];
+            } catch (PDOException $e) {
+                return ["success" => false, "error" => $e->getMessage()];
+            }
+        }
+
+        public function deleteCreatedTest($data) {
+            try {
+                $this->deleteCreatedTest->execute($data);
+                return ["success" => true, "data" => $this->deleteTestByName->fetchAll(PDO::FETCH_ASSOC)];
             } catch (PDOException $e) {
                 return ["success" => false, "error" => $e->getMessage()];
             }

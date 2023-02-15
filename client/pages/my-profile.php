@@ -32,14 +32,14 @@
         <tr class="table-heading-row">
           <th class="table-heading">№</th>
           <th class="table-heading">Test Name</th>
-          <th class="table-heading">Performed</th>
+          <th class="table-heading">Action</th>
         </tr>
       </thead>
       <tbody>
       </tbody>
     </table>
   </div>
-  <p class="performed-tests-title">You have performed the following tests:</p>
+  <p class="performed-tests-title">You have performed the following tests: </p>
   <div id="performed-tests">
     <table id="performed-tests-table">
       <thead>
@@ -53,7 +53,7 @@
       </tbody>
     </table>
   </div>
-  <p class="all-tests-title">All performed tests and grades:</p>
+  <p class="all-tests-title">All performed tests and grades by your students: </p>
   <div id="all-students-tests">
     <table id="students-tests-table">
       <thead>

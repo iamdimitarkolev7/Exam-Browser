@@ -136,5 +136,16 @@
                 $this->createdTests = $createdTests;
             }
         }
+
+        public function deleteCreatedtest($createdTests, $username) {
+            $query = $this->db->deleteCreatedTest([
+                'createdTests' => $createdTests,
+                'username' => $username
+            ]);
+
+            if ($query['success']) {
+                $this->createdTests = $createdTests;
+            }
+        }
     }
 ?>
