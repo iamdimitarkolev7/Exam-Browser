@@ -15,9 +15,11 @@
   $user = new User($username, '', '', '', '', '');
 
   $resultGrade = '';
+  $studentsData;
 
   if ($user->exists()) {
     $resultGrade = $user->getResultGrade();
+    $studentsData = $user->selectAllStudents();
   }
 
   if (isset($_GET['testName'])) {
@@ -50,6 +52,7 @@
       'message' => 'Request is successful',
       'testsData' => $testsData,
       'resultGrade' => $resultGrade,
-      'createdTests' => $user->getCreatedTests()]);
+      'createdTests' => $user->getCreatedTests(),
+      'allUsersData' => $studentsData]);
   }
 ?>

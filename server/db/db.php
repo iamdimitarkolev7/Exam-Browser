@@ -10,6 +10,7 @@
         private $updateCreatedTests;
         private $deleteTestByName;
         private $deleteCreatedTest;
+        private $selectStudentsAndTheirGrades;
 
         public function __construct() {
             $config = parse_ini_file('../../config.ini', true);
@@ -62,6 +63,9 @@
 
             $sql = "UPDATE users SET createdTests = :createdTests WHERE username = :username";
             $this->deleteCreatedTest = $this->connection->prepare($sql);
+
+            $sql = "SELECT firstname, lastname, resultGrade FROM users WHERE role = 1";
+            $this->selectStudentsAndTheirGrades = $this->connection->prepare($sql);
         }
 
         public function selectUserQuery($data) {
@@ -143,6 +147,15 @@
             try {
                 $this->deleteCreatedTest->execute($data);
                 return ["success" => true, "data" => $this->deleteTestByName->fetchAll(PDO::FETCH_ASSOC)];
+            } catch (PDOException $e) {
+                return ["success" => false, "error" => $e->getMessage()];
+            }
+        }
+
+        public function getStudentsData() {
+            try {
+                $this->selectStudentsAndTheirGrades->execute();
+                return ["success" => true, "data" => $this->selectStudentsAndTheirGrades->fetchAll(PDO::FETCH_ASSOC)];
             } catch (PDOException $e) {
                 return ["success" => false, "error" => $e->getMessage()];
             }

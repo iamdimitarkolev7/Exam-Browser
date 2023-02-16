@@ -4,12 +4,15 @@ function loadSessionMyProfile() {
   const performedTests = document.getElementById('performed-tests');
   const performedTitle = document.querySelector(".performed-tests-title");
   const performedTestsTable = document.getElementById('performed-tests-table').getElementsByTagName('tbody')[0];
+  const allTitle = document.querySelector(".all-tests-title");
+  const allTests = document.getElementById('all-students-tests').getElementsByTagName('tbody')[0];
 
   let btnCreateTest = document.getElementById('create-test-btn');
   let btnShowTest = document.getElementById('show-tests-btn');
 
   getData('../../server/controllers/show-tests.php')
   .then(response => {
+    console.log(response);
     let number = 0;
 
     switch (+localStorage.getItem('userRole')) {
@@ -55,6 +58,25 @@ function loadSessionMyProfile() {
           btn.addEventListener('click', deleteTest);
         }
 
+        // fill second table
+
+        for (const userData of response.allUsersData) {
+          const deserialesdGrades = deserialisedGrades(userData.resultGrade);
+          console.log(userData)
+
+          for (const gradeData of deserialesdGrades) {
+            if (createdTests.includes(gradeData.testName)) {
+              const sr = `
+                <tr class="table-body-row">
+                  <td class="table-data">${userData.firstname} ${userData.lastname}</td>
+                  <td class="table-data">${gradeData.testName}</td>
+                  <td class="table-data">${gradeData.testGrade}</td>
+                </tr>`
+                allTests.insertRow().innerHTML = sr;
+            }
+          }
+        }
+
         break;
     }
   })
@@ -67,6 +89,8 @@ function loadSessionMyProfile() {
     createdTitle.style.display = 'none';
     btnCreateTest.style.display = 'none';
     btnShowTest.parentElement.style.margin = 0;
+    allTitle.style.display = 'none';  
+    allTests.style.display = 'none';
   } else {
     performedTests.style.display = 'none';
     performedTitle.style.display = 'none';

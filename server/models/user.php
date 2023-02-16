@@ -147,5 +147,11 @@
                 $this->createdTests = $createdTests;
             }
         }
+
+        public function selectAllStudents() {
+            $query = $this->db->getStudentsData();
+
+            return $query['data'];
+        }
     }
 ?>
