@@ -12,7 +12,6 @@ function loadSessionMyProfile() {
 
   getData('../../server/controllers/show-tests.php')
   .then(response => {
-    console.log(response);
     let number = 0;
 
     switch (+localStorage.getItem('userRole')) {
@@ -62,7 +61,6 @@ function loadSessionMyProfile() {
 
         for (const userData of response.allUsersData) {
           const deserialesdGrades = deserialisedGrades(userData.resultGrade);
-          console.log(userData)
 
           for (const gradeData of deserialesdGrades) {
             if (createdTests.includes(gradeData.testName)) {
@@ -90,7 +88,7 @@ function loadSessionMyProfile() {
     btnCreateTest.style.display = 'none';
     btnShowTest.parentElement.style.margin = 0;
     allTitle.style.display = 'none';  
-    allTests.style.display = 'none';
+    document.getElementById('all-students-tests').style.display = 'none';
   } else {
     performedTests.style.display = 'none';
     performedTitle.style.display = 'none';
