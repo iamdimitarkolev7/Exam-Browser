@@ -16,7 +16,7 @@ loginBtn.onclick = () => {
     password
   };
 
-  sendData('http://localhost:80/exam-browser-api/server/controllers/login.php', user)
+  sendData('../..//server/controllers/login.php', user)
   .then(response => {
     console.log(response);
     load(response);

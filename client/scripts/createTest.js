@@ -38,12 +38,13 @@ const uploadTest = (test) => {
 
   const serialisedTest = { testName, questions, answers, correctAnswers };
 
-  sendData('http://localhost:80/exam-browser-api/server/controllers/create-test.php', serialisedTest)
+  sendData('../../server/controllers/create-test.php', serialisedTest)
   .then(response => {
+    showAlertBox(response.success, response.message)
     console.log(response);
   })
   .catch(err => {
-    // Err when test exists
+    showAlertBox(err.success, err.message)
     console.log(err);
   });
 }

@@ -3,20 +3,20 @@ function loadSessionMyProfile() {
   const createdTitle = document.querySelector(".created-tests-title");
   const performedTests = document.getElementById('performed-tests');
   const performedTitle = document.querySelector(".performed-tests-title");
-  const allTitle = document.querySelector(".all-tests-title");
-  const allTests = document.getElementById('all-students-tests');
   const performedTestsTable = document.getElementById('performed-tests-table').getElementsByTagName('tbody')[0];
 
   let btnCreateTest = document.getElementById('create-test-btn');
   let btnShowTest = document.getElementById('show-tests-btn');
 
-  getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php')
+  getData('../../server/controllers/show-tests.php')
   .then(response => {
     let number = 0;
 
     switch (+localStorage.getItem('userRole')) {
       case 1:
         const performedTestsArr = deserialisedGrades(response.resultGrade);
+        let sumGrades = 0;
+
         for (const test of performedTestsArr) {
           const st = `
             <tr class="table-body-row">
@@ -25,8 +25,13 @@ function loadSessionMyProfile() {
               <td class="table-data">${test.testGrade}</td>
             </tr>`
           number++;
+          sumGrades += +test.testGrade;
           performedTestsTable.insertRow().innerHTML = st;
         }
+
+        document.getElementById('average-grade').textContent = 
+          sumGrades === 0 ? 'None': 'Average grade: ' + (sumGrades / number);
+
         break;
       case 2:
         const createdTests = response.createdTests.split('|').filter(e => e !== '');
@@ -60,8 +65,6 @@ function loadSessionMyProfile() {
   if (localStorage.getItem('userRole') == 1) {
     createdTestsTable.style.display = 'none';
     createdTitle.style.display = 'none';
-    allTitle.style.display = 'none';  
-    allTests.style.display = 'none';
     btnCreateTest.style.display = 'none';
     btnShowTest.parentElement.style.margin = 0;
   } else {
@@ -75,7 +78,7 @@ function loadSessionMyProfile() {
 const deleteTest = (e) => {
   const testName = e.target.parentElement.parentElement.children[1].textContent;
 
-  sendData('http://localhost:80/exam-browser-api/server/controllers/delete-test.php', {testName})
+  sendData('../../server/controllers/delete-test.php', {testName})
   .then(response => {
     e.target.parentElement.parentElement.innerHTML = '';
   })

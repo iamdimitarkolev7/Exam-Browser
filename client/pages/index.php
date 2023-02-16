@@ -15,6 +15,7 @@
   <script src="../scripts/utilities.js"></script>
   <script src="../scripts/index.js"></script>
   <script src="../scripts/logout.js"></script>
+  <link rel="stylesheet" href="../styles/index.css"/>
   <link rel="stylesheet" href="../styles/styles.css"/>
   <link rel="stylesheet" href="../styles/nav.css"/>
 </head>
@@ -33,5 +34,8 @@
       <li><a class="links" id="sign-up-btn" href="./login.php">Login</a></li>
     </ul>
   </nav>
+  <div id="content">
+    
+  </div>
 </body>
 </html>

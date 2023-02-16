@@ -1,13 +1,15 @@
 function loadSession() {
-  getData('http://localhost:80/exam-browser-api/server/controllers/index.php')
+  getData('../../server/controllers/index.php')
   .then(response => {
     window.localStorage.setItem('username', response.user);
     window.localStorage.setItem('userRole', response.role);
     setAuthorizedUserNavButtons(+response.role);
+    setAuthorizedHomePage(response.role, response.user);
   })
   .catch(err => {
     if (err) {
       setUnathorizedUserButtons();
+      setUnauthorizedHome();
     }
   });
 }
@@ -53,4 +55,42 @@ function setUnathorizedUserButtons() {
   createTestBtn.style.display = 'none';
   myProfileBtn.style.display = 'none';
   logoutBtn.style.display = 'none';
+}
+
+function setAuthorizedHomePage(role, username) {
+  const content = document.getElementById('content');
+
+  if (role == 1) {
+    content.innerHTML = `
+      <div id="image-holder">
+        <img src="../../images/student-home-page.png" alt="home-page-img">
+      </div>
+      <div id="description">
+      <h1>Welcome @${username}</h1>
+        <p>Now you can find tests, created by your teacher and do them. Also, you can keep track of your grades. Have fun!</p>
+      </div>`;
+  } else {
+    content.innerHTML = `
+      <div id="image-holder">
+        <img src="../../images/teacher-home-page.png" alt="home-page-img">
+      </div>
+      <div id="description">
+        <h1>Welcome @${username}</h1>
+        <p>Now you can create tests and give them to your students. If you think that you made a mistake with the test, don't worry.
+        Delete it and create a new one. Good luck!</p>
+      </div>`;
+  }
+}
+
+function setUnauthorizedHome() {
+  const content = document.getElementById('content');
+
+  content.innerHTML = `
+    <div id="image-holder">
+      <img src="../../images/home-page.png" alt="home-page-img">
+    </div>
+    <div id="description">
+      <h1>Welcome to the Exam Browser</h1>
+      <p>You can use this web application for creating tests, giving them to students and to keep track of made tests.</p>
+    </div>`;
 }

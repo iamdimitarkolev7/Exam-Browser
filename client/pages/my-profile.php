@@ -53,19 +53,6 @@
       </tbody>
     </table>
   </div>
-  <p class="all-tests-title">All performed tests and grades by your students: </p>
-  <div id="all-students-tests">
-    <table id="students-tests-table">
-      <thead>
-        <tr class="table-heading-row">
-          <th class="table-heading">Student</th>
-          <th class="table-heading">Test Name</th>
-          <th class="table-heading">Grade</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
+  <p id="average-grade"></p>
 </body>
 </html>

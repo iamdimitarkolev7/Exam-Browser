@@ -22,7 +22,7 @@ registerBtn.onclick = () => {
   
   let user = { firstName, lastName, username, password, confirmPassword, role };
 
-  sendData('http://localhost:80/exam-browser-api/server/controllers/register.php', user)
+  sendData('../../server/controllers/register.php', user)
   .then(response => {
     load(response);
     location.href = './index.php';

@@ -16,3 +16,7 @@
 .created-tests-title, .performed-tests-title, .all-tests-title {
     text-align: center;
 }
+
+#average-grade {
+    text-align: center;
+}

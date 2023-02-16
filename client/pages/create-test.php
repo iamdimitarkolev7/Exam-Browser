@@ -11,11 +11,13 @@
   <meta charset="utf-8"/>
   <title>Exam Browser</title>
   <link rel="stylesheet" href="../styles/styles.css"/>
+  <link rel="stylesheet" href="../styles/alert.css"/>
   <link rel="stylesheet" href="../styles/nav.css"/>
   <link rel="stylesheet" href="../styles/create-test.css">
   <script src="../scripts/utilities.js"></script>
   <script src="../scripts/index.js"></script>
   <script type="text/javascript" src="../scripts/testUtilities.js"></script>
+  <script type="text/javascript" src="../scripts/alertUtils.js"></script>
   <script type="text/javascript" src="../scripts/createTest.js"></script>
   <script type="text/javascript" src="../scripts/logout.js"></script>
 </head>
@@ -31,8 +33,7 @@
       <li><a class="links" id="logout-btn" onclick="logout(event)">Logout</a></li>
     </ul>
   </nav>
-  <div id="errors">
-    <p class="error-msg"></p>
+  <div id="alert">
   </div>
   <form id="create-test-form" onsubmit="submitCreateTestForm(event)">
     <p class="json-info-txt">Upload a json file that contains following information:</p>

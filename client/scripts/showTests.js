@@ -1,5 +1,5 @@
 const loadAllTests = () => {
-  getData('http://localhost:80/exam-browser-api/server/controllers/show-tests.php')
+  getData('../../server/controllers/show-tests.php')
   .then(response => {
     console.log(localStorage);
 

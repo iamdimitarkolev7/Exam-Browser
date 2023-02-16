@@ -39,7 +39,7 @@
     http_response_code(200);
 
     echo json_encode([
-      'succes' => true,
+      'success' => true,
       'message' => 'Test successfully added to the database'
     ]);
   }
