@@ -1,0 +1,45 @@
+{
+	"testName": "Random1",
+	"questions": [
+		{ 
+			"question": "If today is Saturday, tomorrow it is: ",
+			"answers": [ "Sunday", "Monday", "Tuesday", "Friday" ],
+			"correctAnswer": "Sunday"
+		},
+		{
+			"question": "Banitsa is a traditional dish in: ",
+			"answers": [ "Serbia", "Canada", "Bulgaria", "Hungary" ],
+			"correctAnswer": "Bulgaria"
+		},
+		{
+			"question": "Great Britain is: ",
+			"answers": [ "island", "sea", "ocean", "desert" ],
+			"correctAnswer": "island"
+		},
+		{
+			"question": "The capital of Bulgaria is: ",
+			"answers": [ "Varna", "Sliven", "Sofia", "Razgrad" ],
+			"correctAnswer": "Sofia"
+		},
+		{
+			"question": "Sir Alex Fergusen is a legend coach of: ",
+			"answers": [ "Man City", "Man Utd", "Real Madrid", "Barcelona" ],
+			"correctAnswer": "Man Utd"
+		},
+		{
+			"question": "The King of football is: ",
+			"answers": [ "Pele", "Mbappe", "Maradona", "Messi" ],
+			"correctAnswer": "Pele"
+		},
+		{
+			"question": "You can find sand in: ",
+			"answers": [ "Vitosha mountains", "Varna beach", "the center of Pleven", "Jupiter" ],
+			"correctAnswer": "Varna beach"
+		},
+		{
+			"question": "Forth planet in our system is: ",
+			"answers": [ "Jupiter", "Uranus", "Mars", "Earth" ],
+			"correctAnswer": "Mars"
+		}
+	]
+}

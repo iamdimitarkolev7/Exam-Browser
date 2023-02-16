@@ -1,0 +1,25 @@
+{
+	"testName": "Maths",
+	"questions": [
+		{ 
+			"question": "Which number is bigger that the others?",
+			"answers": [ "1", "2", "3", "-20" ],
+			"correctAnswer": "3"
+		},
+		{
+			"question": "Which number is smaller than the others?",
+			"answers": [ "1", "2", "3", "-20" ],
+			"correctAnswer": "-20"
+		},
+		{
+			"question": "What's equals to PI?",
+			"answers": [ "3.14", "2.14", "9.8", "33" ],
+			"correctAnswer": "3.14"
+		},
+		{
+			"question": "What's zero devided by zero?",
+			"answers": [ "0", "undefined", "infinity", "1235" ],
+			"correctAnswer": "undefined"
+		}
+	]
+}

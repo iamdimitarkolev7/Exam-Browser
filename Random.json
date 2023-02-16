@@ -1,0 +1,20 @@
+{
+	"testName": "Random",
+	"questions": [
+		{ 
+			"question": "What day is it today?",
+			"answers": [ "Monday", "Tuesday", "Friday", "Sunday" ],
+			"correctAnswer": "Friday"
+		},
+		{
+			"question": "Who is Kukata?",
+			"answers": [ "Valev", "Djaro", "Marto", "Mitko" ],
+			"correctAnswer": "Valev"
+		},
+		{
+			"question": "Most beautiful place in the world is: ",
+			"answers": [ "Bulgaria", "Greece", "Serbia", "Romania" ],
+			"correctAnswer": "Bulgaria"
+		}
+	]
+}

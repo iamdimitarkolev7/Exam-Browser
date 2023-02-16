@@ -1,0 +1,25 @@
+{
+	"testName": "History",
+	"questions": [
+		{ 
+			"question": "When is Bulgaria created?",
+			"answers": [ "681", "682", "683", "684" ],
+			"correctAnswer": "681"
+		},
+		{
+			"question": "Who discovered America?",
+			"answers": [ "Columbus", "Martin Penev", "Bill Gates", "Noone" ],
+			"correctAnswer": "Columbus"
+		},
+		{
+			"question": "Where is discovered the oldest gold treasure?",
+			"answers": [ "Varna", "Sofia", "Serbia", "Romania" ],
+			"correctAnswer": "Varna"
+		},
+		{
+			"question": "When happened the battle in Kluch village?",
+			"answers": [ "983", "955", "1014", "1235" ],
+			"correctAnswer": "1014"
+		}
+	]
+}

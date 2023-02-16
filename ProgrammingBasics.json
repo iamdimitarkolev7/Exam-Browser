@@ -1,0 +1,20 @@
+{
+	"testName": "Programming Basics",
+	"questions": [
+		{ 
+			"question": "What is C++?",
+			"answers": [ "Statue", "Tree", "Programming language", "The first American president" ],
+			"correctAnswer": "Programming language"
+		},
+		{
+			"question": "What's not a type in C++?",
+			"answers": [ "integer", "string", "music", "boolean" ],
+			"correctAnswer": "music"
+		},
+		{
+			"question": "Using C++ you cannot build: ",
+			"answers": [ "Desktop apps", "Microservices", "Buildings", "CLI programs" ],
+			"correctAnswer": "Buildings"
+		}
+	]
+}
